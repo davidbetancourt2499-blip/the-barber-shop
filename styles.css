@@ -1,0 +1,163 @@
+/* Custom CSS Styles for THE BARBER SHOP Landing Page */
+
+/* Base & Typography Setup */
+html {
+    scroll-behavior: smooth;
+    color-scheme: dark;
+}
+
+/* Custom Dark Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #09090B;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #2A2A35;
+    border-radius: 5px;
+    border: 2px solid #09090B;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #D4AF37;
+}
+
+/* Hero Background Radial Gradient Effect */
+.bg-radial-gradient {
+    background: radial-gradient(circle at center, rgba(212, 175, 55, 0.12) 0%, rgba(9, 9, 11, 0.85) 75%);
+}
+
+/* Checkbox Card Styling & Active States */
+.service-checkbox-card {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.service-checkbox-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.15);
+}
+
+.service-checkbox-card.checked {
+    background-color: rgba(28, 28, 34, 0.95);
+    border-color: #D4AF37 !important;
+    box-shadow: 0 0 25px rgba(212, 175, 55, 0.35);
+}
+
+.service-checkbox-card.checked .custom-check-icon {
+    background-color: #D4AF37;
+    border-color: #D4AF37;
+}
+
+.service-checkbox-card.checked .custom-check-icon i {
+    display: block !important;
+}
+
+/* Barber Radio Cards Styling & Active States */
+.barber-card {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.barber-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.15);
+}
+
+.barber-card.checked {
+    background-color: rgba(28, 28, 34, 0.95);
+    border-color: #D4AF37 !important;
+    box-shadow: 0 0 25px rgba(212, 175, 55, 0.35);
+}
+
+.barber-card.checked .barber-check-icon {
+    background-color: #D4AF37;
+    border-color: #D4AF37;
+}
+
+.barber-card.checked .barber-check-icon i {
+    display: block !important;
+}
+
+/* Glowing Border Animations */
+@keyframes goldPulse {
+    0%, 100% {
+        box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 30px rgba(212, 175, 55, 0.7);
+    }
+}
+
+.gold-glow-pulse {
+    animation: goldPulse 3s infinite ease-in-out;
+}
+
+/* Active Nav link underline indicator */
+.nav-link.active {
+    color: #D4AF37 !important;
+    border-bottom-color: #D4AF37 !important;
+}
+
+/* Time Slot Active State */
+.time-slot-btn.active {
+    background-color: #D4AF37 !important;
+    color: #000000 !important;
+    border-color: #D4AF37 !important;
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+}
+
+/* Time Preference Active State */
+.time-preference-btn.active {
+    background-color: #D4AF37 !important;
+    color: #000000 !important;
+    border-color: #D4AF37 !important;
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+    font-weight: 700;
+}
+
+/* Modal Open Animation */
+#confirmation-modal.show {
+    display: flex !important;
+    opacity: 1;
+}
+
+#confirmation-modal.show > div {
+    transform: scale(1);
+}
+
+/* Gallery Zoom Effect */
+.gallery-item img {
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Oregano — font-size compensation (~15% larger) */
+body.font-oregano {
+    font-size: 1.125em;
+}
+
+.font-oregano.text-\[9px\] {
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.font-oregano.text-\[10px\] {
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+.font-oregano.text-xs {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+}
+
+.font-oregano.text-sm {
+    font-size: 1rem;
+    line-height: 1.5rem;
+}
+
+.font-oregano.text-base {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+}

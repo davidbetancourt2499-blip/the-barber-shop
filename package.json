@@ -1,0 +1,13 @@
+{
+  "name": "the-barber-shop-landing",
+  "version": "1.0.0",
+  "description": "Landing page de lujo y calculador interactivo para THE BARBER SHOP",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx -y serve . -p 3000",
+    "start": "npx -y serve . -p 3000"
+  },
+  "keywords": ["barbershop", "landing-page", "tailwind", "calculator"],
+  "author": "Antigravity",
+  "license": "ISC"
+}
