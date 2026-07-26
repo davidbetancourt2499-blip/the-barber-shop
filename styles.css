@@ -35,12 +35,12 @@ body {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #FF1E42;
+    background: #8B5CF6;
 }
 
 /* Hero Background Radial Gradient Effect */
 .bg-radial-gradient {
-    background: radial-gradient(circle at center, rgba(255, 30, 66, 0.08) 0%, rgba(251, 246, 238, 0.9) 75%);
+    background: radial-gradient(circle at center, rgba(139, 92, 246, 0.08) 0%, rgba(251, 246, 238, 0.9) 75%);
 }
 
 /* Checkbox Card Styling & Active States */
@@ -50,18 +50,18 @@ body {
 
 .service-checkbox-card:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(255, 30, 66, 0.12);
+    box-shadow: 0 8px 25px rgba(139, 92, 246, 0.12);
 }
 
 .service-checkbox-card.checked {
     background-color: rgba(255, 252, 245, 0.95);
-    border-color: #FF1E42 !important;
-    box-shadow: 0 0 25px rgba(255, 30, 66, 0.2);
+    border-color: #8B5CF6 !important;
+    box-shadow: 0 0 25px rgba(139, 92, 246, 0.2);
 }
 
 .service-checkbox-card.checked .custom-check-icon {
-    background-color: #FF1E42;
-    border-color: #FF1E42;
+    background-color: #8B5CF6;
+    border-color: #8B5CF6;
 }
 
 .service-checkbox-card.checked .custom-check-icon i {
@@ -75,18 +75,18 @@ body {
 
 .barber-card:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(255, 30, 66, 0.12);
+    box-shadow: 0 8px 25px rgba(139, 92, 246, 0.12);
 }
 
 .barber-card.checked {
     background-color: rgba(255, 252, 245, 0.95);
-    border-color: #FF1E42 !important;
-    box-shadow: 0 0 25px rgba(255, 30, 66, 0.2);
+    border-color: #8B5CF6 !important;
+    box-shadow: 0 0 25px rgba(139, 92, 246, 0.2);
 }
 
 .barber-card.checked .barber-check-icon {
-    background-color: #FF1E42;
-    border-color: #FF1E42;
+    background-color: #8B5CF6;
+    border-color: #8B5CF6;
 }
 
 .barber-card.checked .barber-check-icon i {
@@ -96,10 +96,10 @@ body {
 /* Glowing Border Animations */
 @keyframes goldPulse {
     0%, 100% {
-        box-shadow: 0 0 15px rgba(255, 30, 66, 0.2);
+        box-shadow: 0 0 15px rgba(139, 92, 246, 0.2);
     }
     50% {
-        box-shadow: 0 0 30px rgba(255, 30, 66, 0.5);
+        box-shadow: 0 0 30px rgba(139, 92, 246, 0.5);
     }
 }
 
@@ -109,24 +109,24 @@ body {
 
 /* Active Nav link underline indicator */
 .nav-link.active {
-    color: #FF1E42 !important;
-    border-bottom-color: #FF1E42 !important;
+    color: #8B5CF6 !important;
+    border-bottom-color: #8B5CF6 !important;
 }
 
 /* Time Slot Active State */
 .time-slot-btn.active {
-    background-color: #FF1E42 !important;
+    background-color: #8B5CF6 !important;
     color: #FFFFFF !important;
-    border-color: #FF1E42 !important;
-    box-shadow: 0 0 15px rgba(255, 30, 66, 0.3);
+    border-color: #8B5CF6 !important;
+    box-shadow: 0 0 15px rgba(139, 92, 246, 0.3);
 }
 
 /* Time Preference Active State */
 .time-preference-btn.active {
-    background-color: #FF1E42 !important;
+    background-color: #8B5CF6 !important;
     color: #FFFFFF !important;
-    border-color: #FF1E42 !important;
-    box-shadow: 0 0 15px rgba(255, 30, 66, 0.3);
+    border-color: #8B5CF6 !important;
+    box-shadow: 0 0 15px rgba(139, 92, 246, 0.3);
     font-weight: 700;
 }
 
@@ -222,7 +222,7 @@ body {
     display: flex;
     align-items: center;
     gap: 8px;
-    color: #FF1E42;
+    color: #8B5CF6;
     font-family: 'Sedgwick Ave', cursive;
     font-size: 1rem;
     letter-spacing: 0.15em;
@@ -232,7 +232,7 @@ body {
 
 .photo-stack:hover .stack-label {
     letter-spacing: 0.25em;
-    color: #D90429;
+    color: #7C3AED;
 }
 
 .photo-stack .stack-label i {
@@ -260,7 +260,7 @@ body {
 }
 .galeria-card:hover {
     transform: translateY(-6px);
-    box-shadow: 0 12px 35px rgba(255, 30, 66, 0.15);
+    box-shadow: 0 12px 35px rgba(139, 92, 246, 0.15);
 }
 
 /* Oregano — font-size compensation (~15% larger) */
