@@ -157,19 +157,44 @@ document.addEventListener('DOMContentLoaded', () => {
     const servicesSection = document.getElementById('services-section');
     const barberCards = document.querySelectorAll('.barber-card');
     const barberRadios = document.querySelectorAll('.barber-radio');
+    const cardDouglas = document.getElementById('card-douglas');
+    const cardCristopher = document.getElementById('card-cristopher');
+    const cardNone = document.getElementById('card-none');
 
     if (barberCards.length > 0) {
         barberCards.forEach((card) => {
             card.addEventListener('click', () => {
                 if (!card.hasAttribute('onclick')) {
                     const radio = card.querySelector('.barber-radio');
-                    if (radio) {
-                        barberRadios.forEach(r => r.checked = false);
-                        barberCards.forEach(c => c.classList.remove('checked'));
-                        radio.checked = true;
-                        card.classList.add('checked');
-                        unlockStep3();
-                        toggleTimeSection(radio.value);
+                    if (!radio) return;
+
+                    // Toggle off if "Sin preferencia" is already selected
+                    if (radio.checked) {
+                        radio.checked = false;
+                        card.classList.remove('checked');
+                        lockStep3();
+                        showTimeSlots();
+                        // Restore Douglas & Cristopher cards
+                        if (cardDouglas) cardDouglas.classList.remove('hidden');
+                        if (cardCristopher) cardCristopher.classList.remove('hidden');
+                        return;
+                    }
+
+                    // Select this radio
+                    barberRadios.forEach(r => r.checked = false);
+                    barberCards.forEach(c => c.classList.remove('checked'));
+                    radio.checked = true;
+                    card.classList.add('checked');
+                    unlockStep3();
+                    toggleTimeSection(radio.value);
+
+                    // If "Sin preferencia": hide Douglas & Cristopher
+                    if (radio.value.includes('Sin preferencia')) {
+                        if (cardDouglas) cardDouglas.classList.add('hidden');
+                        if (cardCristopher) cardCristopher.classList.add('hidden');
+                    } else {
+                        if (cardDouglas) cardDouglas.classList.remove('hidden');
+                        if (cardCristopher) cardCristopher.classList.remove('hidden');
                     }
                 }
             });

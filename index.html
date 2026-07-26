@@ -80,7 +80,7 @@
             <!-- Logo -->
             <a href="#" class="flex items-center space-x-3 group">
                 <div class="w-10 h-10 rounded-full border-2 border-gold-500 flex items-center justify-center bg-dark-800 text-gold-500 group-hover:bg-gold-500 group-hover:text-black transition-all duration-300 shadow-[0_0_15px_rgba(212,175,55,0.3)]">
-                    <i class="fa-scissors text-lg transform group-hover:rotate-45 transition-transform duration-300"></i>
+                    <i class="fa-solid fa-scissors text-lg transform group-hover:rotate-45 transition-transform duration-300"></i>
                 </div>
                 <div class="flex flex-col">
                     <span class="font-sedgwick text-xl md:text-2xl font-black tracking-wider text-white group-hover:text-gold-500 transition-colors">THE BARBER SHOP</span>
@@ -580,15 +580,15 @@
                     </div>
 
                     <!-- Grid Radio Cards for Barbers -->
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4" id="barber-selector-grid">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-5" id="barber-selector-grid">
                         <!-- Barber 1: Douglas Tapia (Redirige a perfil) -->
-                        <div onclick="window.location.href='douglas.html'" class="barber-card relative cursor-pointer block p-5 rounded-2xl bg-dark-700/80 border-2 border-dark-600 hover:border-gold-500/50 transition-all duration-300 select-none">
+                        <div id="card-douglas" onclick="window.location.href='douglas.html'" class="barber-card relative cursor-pointer block p-5 rounded-2xl bg-dark-700/80 border-2 border-dark-600 hover:border-gold-500/50 shadow-lg shadow-black/20 hover:shadow-gold-500/10 transition-all duration-300 select-none">
                             <input type="radio" name="barber" id="barber-douglas" value="Douglas Tapia" data-phone="525551112233" class="barber-radio hidden">
                             <div class="card-content flex items-center space-x-4">
-                                <div class="w-12 h-12 rounded-full bg-gold-500/20 border border-gold-500 flex items-center justify-center text-gold-500 font-bold text-lg">
+                                <div class="w-12 h-12 rounded-full bg-gold-500/20 border border-gold-500 flex items-center justify-center text-gold-500 font-bold text-lg shrink-0">
                                     <i class="fa-solid fa-user-tie"></i>
                                 </div>
-                                <div class="flex-1">
+                                <div class="flex-1 min-w-0">
                                     <div class="flex items-center space-x-1">
                                         <h4 class="font-oregano font-bold text-white text-sm">Douglas Tapia</h4>
                                         <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-gold-500"></i>
@@ -599,13 +599,13 @@
                         </div>
 
                         <!-- Barber 2: Cristopher Tapia (Redirige a perfil) -->
-                        <div onclick="window.location.href='cristopher.html'" class="barber-card relative cursor-pointer block p-5 rounded-2xl bg-dark-700/80 border-2 border-dark-600 hover:border-gold-500/50 transition-all duration-300 select-none">
+                        <div id="card-cristopher" onclick="window.location.href='cristopher.html'" class="barber-card relative cursor-pointer block p-5 rounded-2xl bg-dark-700/80 border-2 border-dark-600 hover:border-gold-500/50 shadow-lg shadow-black/20 hover:shadow-gold-500/10 transition-all duration-300 select-none">
                             <input type="radio" name="barber" id="barber-cristopher" value="Cristopher Tapia" data-phone="525554445566" class="barber-radio hidden">
                             <div class="card-content flex items-center space-x-4">
-                                <div class="w-12 h-12 rounded-full bg-gold-500/20 border border-gold-500 flex items-center justify-center text-gold-500 font-bold text-lg">
+                                <div class="w-12 h-12 rounded-full bg-gold-500/20 border border-gold-500 flex items-center justify-center text-gold-500 font-bold text-lg shrink-0">
                                     <i class="fa-solid fa-scissors"></i>
                                 </div>
-                                <div class="flex-1">
+                                <div class="flex-1 min-w-0">
                                     <div class="flex items-center space-x-1">
                                         <h4 class="font-oregano font-bold text-white text-sm">Cristopher Tapia</h4>
                                         <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-gold-500"></i>
@@ -615,22 +615,22 @@
                             </div>
                         </div>
 
-                        <!-- Barber 3: Sin Preferencia (Selección inline) -->
-                        <label class="barber-card relative cursor-pointer block p-5 rounded-2xl bg-dark-700/80 border-2 border-dark-600 hover:border-gold-500/50 transition-all duration-300 select-none">
+                        <!-- Barber 3: Sin Preferencia (Toggle inline) -->
+                        <div id="card-none" class="barber-card relative cursor-pointer block p-5 rounded-2xl bg-dark-700/80 border-2 border-dark-600 hover:border-gold-500/50 shadow-lg shadow-black/20 hover:shadow-gold-500/10 transition-all duration-300 select-none">
                             <input type="radio" name="barber" id="barber-none" value="Sin preferencia / Cualquiera disponible" data-phone="525551234567" class="barber-radio hidden">
                             <div class="card-content flex items-center space-x-4">
-                                <div class="w-12 h-12 rounded-full bg-gold-500/20 border border-gold-500 flex items-center justify-center text-gold-500 font-bold text-lg">
+                                <div class="w-12 h-12 rounded-full bg-gold-500/20 border border-gold-500 flex items-center justify-center text-gold-500 font-bold text-lg shrink-0">
                                     <i class="fa-solid fa-users"></i>
                                 </div>
-                                <div class="flex-1">
+                                <div class="flex-1 min-w-0">
                                     <h4 class="font-oregano font-bold text-white text-sm">Sin preferencia</h4>
                                     <p class="text-xs text-gray-400">Cualquiera disponible</p>
                                 </div>
-                                <div class="barber-check-icon w-6 h-6 rounded-full border border-gray-500 flex items-center justify-center transition-colors">
+                                <div class="barber-check-icon w-6 h-6 rounded-full border border-gray-500 flex items-center justify-center transition-colors shrink-0">
                                     <i class="fa-solid fa-check text-xs text-black hidden"></i>
                                 </div>
                             </div>
-                        </label>
+                        </div>
                     </div>
                 </div>
 
