@@ -57,11 +57,6 @@
 </head>
 <body class="bg-dark-900 text-gray-200 font-oregano selection:bg-gold-500 selection:text-black antialiased overflow-x-hidden relative">
 
-    <!-- Full Page Background Image -->
-    <div class="absolute inset-0 z-0" style="height: 100%;">
-        <img src="img/DavidMejorado.png" alt="" class="w-full h-full object-cover object-top filter brightness-[0.25] contrast-125" style="object-position: center top;">
-    </div>
-
     <!-- HEADER FIJO (Sticky Navbar) -->
     <header class="sticky top-0 z-40 bg-dark-900/70 backdrop-blur-md border-b border-gold-500/20 transition-all duration-300" id="main-header">
         <div class="container mx-auto px-4 md:px-8 py-3.5 flex items-center justify-between">
@@ -117,6 +112,10 @@
 
     <!-- 3. HERO SECTION -->
     <section id="hero" class="relative min-h-[90vh] flex items-center justify-center overflow-hidden py-20">
+        <!-- Hero Background Image -->
+        <div class="absolute inset-0 z-0">
+            <img src="img/DavidMejorado.png" alt="" class="w-full h-full object-cover filter brightness-[0.25] contrast-125">
+        </div>
 
         <div class="container mx-auto px-4 md:px-8 relative z-10 text-center max-w-4xl">
 
