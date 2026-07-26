@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería de Diseños | THE BARBER SHOP</title>
+    <meta name="description" content="Explora nuestra galería de estilos: cortes clásicos, diseños, color studio y arreglos de barba en THE BARBER SHOP.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800;900&family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;600;700;800&family=Sedgwick+Ave&family=Permanent+Marker&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oregano:ital@0;1&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            400: '#F3E5AB',
+                            500: '#D4AF37',
+                            600: '#AA820A',
+                            700: '#856404',
+                            glow: 'rgba(212, 175, 55, 0.4)'
+                        },
+                        dark: {
+                            900: '#09090B',
+                            800: '#121215',
+                            700: '#1C1C22',
+                            600: '#2A2A35'
+                        }
+                    },
+                    fontFamily: {
+                        cinzel: ['Cinzel', 'serif'],
+                        sedgwick: ['Sedgwick Ave', 'cursive'],
+                        permanent: ['Permanent Marker', 'cursive'],
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Montserrat', 'sans-serif'],
+                        oregano: ['Oregano', 'cursive']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css?v=8">
+</head>
+<body class="bg-dark-900 text-gray-200 font-oregano antialiased">
+
+    <!-- HEADER -->
+    <header class="sticky top-0 z-40 bg-dark-900/90 backdrop-blur-md border-b border-gold-500/20 transition-all duration-300" id="main-header">
+        <div class="container mx-auto px-4 md:px-8 py-3.5 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="index.html" class="flex items-center space-x-3 group">
+                <div class="w-10 h-10 rounded-full border-2 border-gold-500 flex items-center justify-center bg-dark-800 text-gold-500 group-hover:bg-gold-500 group-hover:text-black transition-all duration-300 shadow-[0_0_15px_rgba(212,175,55,0.3)]">
+                    <i class="fa-solid fa-scissors text-lg transform group-hover:rotate-45 transition-transform duration-300"></i>
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-sedgwick text-xl md:text-2xl font-black tracking-wider text-white group-hover:text-gold-500 transition-colors">THE BARBER SHOP</span>
+                    <span class="text-[9px] font-sedgwick tracking-[0.3em] text-gold-500 uppercase">ESTILO & TRADICIÓN</span>
+                </div>
+            </a>
+
+            <!-- Menu Desktop -->
+            <nav class="hidden lg:flex items-center space-x-8 text-sm font-oregano font-medium tracking-wide">
+                <a href="index.html#hero" class="text-gray-300 hover:text-gold-500 transition-colors duration-200 py-1 border-b-2 border-transparent hover:border-gold-500">Inicio</a>
+                <a href="index.html#nosotros" class="text-gray-300 hover:text-gold-500 transition-colors duration-200 py-1 border-b-2 border-transparent hover:border-gold-500">Nosotros</a>
+                <a href="galeria.html" class="text-gold-500 border-b-2 border-gold-500 py-1">Galería</a>
+                <a href="index.html#servicios" class="text-gray-300 hover:text-gold-500 transition-colors duration-200 py-1 border-b-2 border-transparent hover:border-gold-500">Servicios y Precios</a>
+                <a href="index.html#reservas" class="text-gray-300 hover:text-gold-500 transition-colors duration-200 py-1 border-b-2 border-transparent hover:border-gold-500">Reservar Cita</a>
+            </nav>
+
+            <!-- CTA Header Button -->
+            <div class="hidden sm:flex items-center space-x-4">
+                <a href="index.html#reservas" class="relative inline-flex items-center justify-center px-6 py-2.5 text-xs md:text-sm font-sedgwick font-bold uppercase tracking-wider text-black bg-gradient-to-r from-gold-400 via-gold-500 to-gold-600 rounded-full shadow-[0_0_20px_rgba(212,175,55,0.4)] hover:shadow-[0_0_30px_rgba(212,175,55,0.7)] hover:scale-105 active:scale-95 transition-all duration-300">
+                    <i class="fa-solid fa-scissors mr-2"></i> Reservar Cita
+                </a>
+            </div>
+
+            <!-- Hamburger Button Mobile -->
+            <button id="mobile-menu-btn" class="lg:hidden text-gray-300 hover:text-gold-500 focus:outline-none p-2 rounded-lg" aria-label="Abrir menú">
+                <i class="fa-solid fa-bars text-2xl" id="menu-icon"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-dark-800/98 border-b border-gold-500/20 px-6 py-6 transition-all duration-300">
+            <div class="flex flex-col space-y-4 font-oregano text-base text-center">
+                <a href="index.html#hero" class="text-gray-200 hover:text-gold-500 py-2 border-b border-gray-800">Inicio</a>
+                <a href="index.html#nosotros" class="text-gray-200 hover:text-gold-500 py-2 border-b border-gray-800">Nosotros</a>
+                <a href="galeria.html" class="text-gold-500 py-2 border-b border-gray-800">Galería</a>
+                <a href="index.html#servicios" class="text-gray-200 hover:text-gold-500 py-2 border-b border-gray-800">Servicios y Precios</a>
+                <a href="index.html#reservas" class="text-gray-200 hover:text-gold-500 py-2 border-b border-gray-800">Reservar Cita</a>
+                <div class="pt-2">
+                    <a href="index.html#reservas" class="w-full inline-block py-3 text-center text-sm font-sedgwick font-bold uppercase tracking-wider text-black bg-gradient-to-r from-gold-400 to-gold-600 rounded-lg shadow-md">
+                        <i class="fa-solid fa-scissors mr-2"></i> Reservar Cita Ahora
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO / TÍTULO PRINCIPAL -->
+    <section class="py-20 bg-dark-800 text-center">
+        <div class="container mx-auto px-4 md:px-8">
+            <span class="text-gold-500 font-sedgwick text-xs uppercase tracking-[0.3em] font-bold block mb-2">THE BARBER SHOP</span>
+            <h1 class="font-permanent text-4xl md:text-6xl font-extrabold text-white mb-4">GALERÍA DE DISEÑOS</h1>
+            <div class="w-24 h-1 bg-gradient-to-r from-transparent via-gold-500 to-transparent mx-auto mb-6"></div>
+            <p class="text-gray-400 text-sm md:text-base max-w-2xl mx-auto font-oregano">Descubre nuestro trabajo, desde cortes clásicos hasta las tendencias más vanguardistas. Cada diseño cuenta una historia de precisión y estilo.</p>
+        </div>
+    </section>
+
+    <!-- CATEGORÍAS -->
+    <section class="py-16 bg-dark-900">
+        <div class="container mx-auto px-4 md:px-8">
+
+            <!-- Category 1: Corte Clásico -->
+            <div class="mb-20">
+                <div class="flex items-center gap-4 mb-8">
+                    <div class="w-12 h-12 rounded-full border-2 border-gold-500 flex items-center justify-center bg-dark-800 text-gold-500 shrink-0">
+                        <i class="fa-solid fa-scissors"></i>
+                    </div>
+                    <div>
+                        <span class="text-gold-500 font-sedgwick text-xs uppercase tracking-[0.3em] font-bold block">CATEGORÍA 01</span>
+                        <h2 class="font-permanent text-2xl md:text-3xl text-white">CORTE CLÁSICO</h2>
+                    </div>
+                </div>
+                <p class="text-gray-400 text-sm md:text-base max-w-3xl mb-8 font-oregano">El corte clásico es la base de toda barbería de prestigio. Técnicas tradicionales perfeccionadas durante décadas que nunca pasan de moda: fade, tijera, navaja y acabados impecables.</p>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="galeria-card rounded-2xl overflow-hidden bg-dark-800 border border-dark-700 h-56 md:h-64">
+                        <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=500&q=80" alt="Skin Fade" class="w-full h-full object-cover">
+                    </div>
+                    <div class="galeria-card rounded-2xl overflow-hidden bg-dark-800 border border-dark-700 h-56 md:h-64">
+                        <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&w=500&q=80" alt="Corte Tijera" class="w-full h-full object-cover">
+                    </div>
+                    <div class="galeria-card rounded-2xl overflow-hidden bg-dark-800 border border-dark-700 h-56 md:h-64">
+                        <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=500&q=80" alt="Corte Clásico" class="w-full h-full object-cover">
+                    </div>
+                    <div class="galeria-card rounded-2xl overflow-hidden bg-dark-800 border border-dark-700 h-56 md:h-64">
+                        <img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=500&q=80" alt="Degradado" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category 2: Cortes con Diseños -->
+            <div class="mb-20">
+                <div class="flex items-center gap-4 mb-8">
+                    <div class="w-12 h-12 rounded-full border-2 border-gold-500 flex items-center justify-center bg-dark-800 text-gold-500 shrink-0">
+                        <i class="fa-solid fa-pen-nib"></i>
+                    </div>
+                    <div>
+                        <span class="text-gold-500 font-sedgwick text-xs uppercase tracking-[0.3em] font-bold block">CATEGORÍA 02</span>
+                        <h2 class="font-permanent text-2xl md:text-3xl text-white">CORTE CON DISEÑOS</h2>
+                    </div>
+                </div>
+                <p class="text-gray-400 text-sm md:text-base max-w-3xl mb-8 font-oregano">Líneas, figuras y patrones grabados con precisión milimétrica. Nuestros barberos son artistas del diseño capilar, creando obras únicas en cada cabeza.</p>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="galeria-card rounded-2xl overflow-hidden bg-dark-800 border border-dark-700 h-56 md:h-64">
+                        <img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?auto=format&fit=crop&w=500&q=80" alt="Diseño Líneas" class="w-full h-full object-cover">
+                    </div>
+                    <div class="galeria-card rounded-2xl overflow-hidden bg-dark-800 border border-dark-700 h-56 md:h-64">
+                        <img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=500&q=80" alt="Diseño Artístico" class="w-full h-full object-cover">
+                    </div>
+                    <div class="galeria-card rounded-2xl overflow-hidden bg-dark-800 border border-dark-700 h-56 md:h-64">
+                        <img src="https://images.unsplash.com/photo-1596362601603-70152a3b36ea?auto=format&fit=crop&w=500&q=80" alt="Geometric Fade" class="w-full h-full object-cover">
+                    </div>
+                    <div class="galeria-card rounded-2xl overflow-hidden bg-dark-800 border border-dark-700 h-56 md:h-64">
+                        <img src="https://images.unsplash.com/photo-1634302086887-13b5281a4d36?auto=format&fit=crop&w=500&q=80" alt="Patrones Grabados" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category 3: Color Studio -->
+            <div class="mb-20">
+                <div class="flex items-center gap-4 mb-8">
+                    <div class="w-12 h-12 rounded-full border-2 border-gold-500 flex items-center justify-center bg-dark-800 text-gold-500 shrink-0">
+                        <i class="fa-solid fa-palette"></i>
+                    </div>
+                    <div>
+                        <span class="text-gold-500 font-sedgwick text-xs uppercase tracking-[0.3em] font-bold block">CATEGORÍA 03</span>
+                        <h2 class="font-permanent text-2xl md:text-3xl text-white">COLOR STUDIO</h2>
+                    </div>
+                </div>
+                <p class="text-gray-400 text-sm md:text-base max-w-3xl mb-8 font-oregano">Tinturados, pigmentación, mechas y coloración permanente. Transforma tu look con los mejores productos y técnicas de colorimetría masculina.</p>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="galeria-card rounded-2xl overflow-hidden bg-dark-800 border border-dark-700 h-56 md:h-64">
+                        <img src="https://images.unsplash.com/photo-1517832606589-7150a6d828a2?auto=format&fit=crop&w=500&q=80" alt="Tinte Hombres" class="w-full h-full object-cover">
+                    </div>
+                    <div class="galeria-card rounded-2xl overflow-hidden bg-dark-800 border border-dark-700 h-56 md:h-64">
+                        <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=500&q=80" alt="Color Studio" class="w-full h-full object-cover">
+                    </div>
+                    <div class="galeria-card rounded-2xl overflow-hidden bg-dark-800 border border-dark-700 h-56 md:h-64">
+                        <img src="https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?auto=format&fit=crop&w=500&q=80" alt="Mechas" class="w-full h-full object-cover">
+                    </div>
+                    <div class="galeria-card rounded-2xl overflow-hidden bg-dark-800 border border-dark-700 h-56 md:h-64">
+                        <img src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?auto=format&fit=crop&w=500&q=80" alt="Pigmentación" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category 4: Diseños de Barba y Cejas -->
+            <div class="mb-20">
+                <div class="flex items-center gap-4 mb-8">
+                    <div class="w-12 h-12 rounded-full border-2 border-gold-500 flex items-center justify-center bg-dark-800 text-gold-500 shrink-0">
+                        <i class="fa-solid fa-face-smile-beam"></i>
+                    </div>
+                    <div>
+                        <span class="text-gold-500 font-sedgwick text-xs uppercase tracking-[0.3em] font-bold block">CATEGORÍA 04</span>
+                        <h2 class="font-permanent text-2xl md:text-3xl text-white">DISEÑOS DE BARBA Y CEJAS</h2>
+                    </div>
+                </div>
+                <p class="text-gray-400 text-sm md:text-base max-w-3xl mb-8 font-oregano">Perfilado de barba a navaja, diseño de cejas, depilación y acabados que definen tu rostro. El toque final que completa tu estilo personal.</p>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="galeria-card rounded-2xl overflow-hidden bg-dark-800 border border-dark-700 h-56 md:h-64">
+                        <img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=500&q=80" alt="Barba Clásica" class="w-full h-full object-cover">
+                    </div>
+                    <div class="galeria-card rounded-2xl overflow-hidden bg-dark-800 border border-dark-700 h-56 md:h-64">
+                        <img src="https://images.unsplash.com/photo-1560869713-7d0a29430803?auto=format&fit=crop&w=500&q=80" alt="Perfilado Barba" class="w-full h-full object-cover">
+                    </div>
+                    <div class="galeria-card rounded-2xl overflow-hidden bg-dark-800 border border-dark-700 h-56 md:h-64">
+                        <img src="https://images.unsplash.com/photo-1519019121993-81e8f0d18c8e?auto=format&fit=crop&w=500&q=80" alt="Cejas Definidas" class="w-full h-full object-cover">
+                    </div>
+                    <div class="galeria-card rounded-2xl overflow-hidden bg-dark-800 border border-dark-700 h-56 md:h-64">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=500&q=80" alt="Barba Completa" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CTA RESERVAR CITA -->
+    <section class="py-16 bg-dark-800 text-center">
+        <div class="container mx-auto px-4 md:px-8">
+            <h2 class="font-permanent text-2xl md:text-4xl text-white mb-4">¿TE GUSTA LO QUE VES?</h2>
+            <div class="w-24 h-1 bg-gradient-to-r from-transparent via-gold-500 to-transparent mx-auto mb-6"></div>
+            <p class="text-gray-400 text-sm md:text-base max-w-xl mx-auto mb-8 font-oregano">Reserva tu cita ahora y deja tu estilo en manos de los mejores profesionales.</p>
+            <a href="index.html#reservas" class="inline-flex items-center gap-3 bg-gradient-to-r from-gold-400 via-gold-500 to-gold-600 text-black font-sedgwick font-bold text-lg px-8 py-4 rounded-full shadow-[0_0_25px_rgba(212,175,55,0.4)] hover:shadow-[0_0_40px_rgba(212,175,55,0.7)] hover:scale-105 active:scale-95 transition-all duration-300">
+                <i class="fa-solid fa-scissors"></i> RESERVAR CITA
+            </a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-dark-900 border-t border-gold-500/20 pt-16 pb-12 text-gray-400 text-sm">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+                <!-- Col 1: Branding -->
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-full border-2 border-gold-500 flex items-center justify-center bg-dark-800 text-gold-500">
+                            <i class="fa-solid fa-scissors"></i>
+                        </div>
+                        <span class="font-sedgwick text-xl font-black text-white">THE BARBER SHOP</span>
+                    </div>
+                    <p class="text-xs text-gray-400 leading-relaxed">
+                        Definiendo el estándar en cuidado masculino. Barbería tradicional con el lujo y la vanguardia que mereces.
+                    </p>
+                    <div class="pt-2">
+                        <a href="https://wa.me/525551234567?text=Hola,%20quiero%20reservar%20una%20cita%20en%20THE%20BARBER%20SHOP" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-2 bg-emerald-600 hover:bg-emerald-500 text-white font-oregano font-bold text-xs py-2.5 px-4 rounded-xl shadow-lg transition-all duration-300">
+                            <i class="fa-brands fa-whatsapp text-lg"></i>
+                            <span>Reserva Directa por WhatsApp</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Col 2: Horarios -->
+                <div>
+                    <h4 class="font-cinzel text-base font-bold text-white mb-4 border-b border-gold-500/30 pb-2 inline-block">HORARIOS DE ATENCIÓN</h4>
+                    <ul class="space-y-2.5 text-xs">
+                        <li class="flex justify-between">
+                            <span class="text-gray-300">Lunes a Viernes:</span>
+                            <span class="text-gold-400 font-semibold">9:00 AM - 8:00 PM</span>
+                        </li>
+                        <li class="flex justify-between border-t border-dark-800 pt-2">
+                            <span class="text-gray-300">Sábados:</span>
+                            <span class="text-gold-400 font-semibold">9:00 AM - 8:00 PM</span>
+                        </li>
+                        <li class="flex justify-between border-t border-dark-800 pt-2">
+                            <span class="text-gray-300">Domingos:</span>
+                            <span class="text-gold-400 font-semibold">10:00 AM - 4:00 PM</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Ubicación -->
+                <div>
+                    <h4 class="font-cinzel text-base font-bold text-white mb-4 border-b border-gold-500/30 pb-2 inline-block">UBICACIÓN Y CONTACTO</h4>
+                    <ul class="space-y-3 text-xs">
+                        <li class="flex items-start space-x-3">
+                            <i class="fa-solid fa-location-dot text-gold-500 mt-0.5"></i>
+                            <span>Av. Principal #123, Colonia Centro, Ciudad de México</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i class="fa-solid fa-phone text-gold-500"></i>
+                            <span>+52 555 123 4567</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i class="fa-solid fa-envelope text-gold-500"></i>
+                            <span>contacto@thebarbershop.com</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: Redes Sociales -->
+                <div>
+                    <h4 class="font-cinzel text-base font-bold text-white mb-4 border-b border-gold-500/30 pb-2 inline-block">SÍGUENOS</h4>
+                    <p class="text-xs text-gray-400 mb-4">Mira nuestros últimos trabajos y promociones diarias en redes.</p>
+                    <div class="flex space-x-3">
+                        <a href="#" class="w-10 h-10 rounded-xl bg-dark-800 border border-dark-700 text-gold-500 hover:bg-gold-500 hover:text-black flex items-center justify-center transition-colors"><i class="fa-brands fa-instagram text-lg"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-xl bg-dark-800 border border-dark-700 text-gold-500 hover:bg-gold-500 hover:text-black flex items-center justify-center transition-colors"><i class="fa-brands fa-facebook-f text-lg"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-xl bg-dark-800 border border-dark-700 text-gold-500 hover:bg-gold-500 hover:text-black flex items-center justify-center transition-colors"><i class="fa-brands fa-tiktok text-lg"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Copyright -->
+            <div class="pt-8 border-t border-dark-800 text-center text-xs text-gray-500 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <p>&copy; 2026 THE BARBER SHOP. Todos los derechos reservados.</p>
+                <div class="flex space-x-4">
+                    <a href="#" class="hover:text-gold-500">Terminos y Condiciones</a>
+                    <a href="#" class="hover:text-gold-500">Politica de Privacidad</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Menu Script -->
+    <script>
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                menuIcon.classList.toggle('fa-bars');
+                menuIcon.classList.toggle('fa-xmark');
+            });
+        }
+    </script>
+
+</body>
+</html>

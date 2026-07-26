@@ -51,7 +51,7 @@
             }
         }
     </script>
-    <link rel="stylesheet" href="styles.css?v=7">
+    <link rel="stylesheet" href="styles.css?v=8">
 </head>
 <body class="bg-dark-900 text-gray-200 font-oregano selection:bg-gold-500 selection:text-black antialiased overflow-x-hidden">
 
@@ -372,8 +372,87 @@
     </section>
 
     <!-- FOOTER -->
-    <footer class="bg-dark-900 border-t border-dark-800 py-8 text-center text-xs text-gray-500">
-        <p>© 2026 THE BARBER SHOP. Todos los derechos reservados.</p>
+    <footer class="bg-dark-900 border-t border-gold-500/20 pt-16 pb-12 text-gray-400 text-sm">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+                <!-- Col 1: Branding -->
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-full border-2 border-gold-500 flex items-center justify-center bg-dark-800 text-gold-500">
+                            <i class="fa-solid fa-scissors"></i>
+                        </div>
+                        <span class="font-sedgwick text-xl font-black text-white">THE BARBER SHOP</span>
+                    </div>
+                    <p class="text-xs text-gray-400 leading-relaxed">
+                        Definiendo el estándar en cuidado masculino. Barbería tradicional con el lujo y la vanguardia que mereces.
+                    </p>
+                    <div class="pt-2">
+                        <a href="https://wa.me/525551234567?text=Hola,%20quiero%20reservar%20una%20cita%20en%20THE%20BARBER%20SHOP" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-2 bg-emerald-600 hover:bg-emerald-500 text-white font-oregano font-bold text-xs py-2.5 px-4 rounded-xl shadow-lg transition-all duration-300">
+                            <i class="fa-brands fa-whatsapp text-lg"></i>
+                            <span>Reserva Directa por WhatsApp</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Col 2: Horarios -->
+                <div>
+                    <h4 class="font-cinzel text-base font-bold text-white mb-4 border-b border-gold-500/30 pb-2 inline-block">HORARIOS DE ATENCIÓN</h4>
+                    <ul class="space-y-2.5 text-xs">
+                        <li class="flex justify-between">
+                            <span class="text-gray-300">Lunes a Viernes:</span>
+                            <span class="text-gold-400 font-semibold">9:00 AM - 8:00 PM</span>
+                        </li>
+                        <li class="flex justify-between border-t border-dark-800 pt-2">
+                            <span class="text-gray-300">Sábados:</span>
+                            <span class="text-gold-400 font-semibold">9:00 AM - 8:00 PM</span>
+                        </li>
+                        <li class="flex justify-between border-t border-dark-800 pt-2">
+                            <span class="text-gray-300">Domingos:</span>
+                            <span class="text-gold-400 font-semibold">10:00 AM - 4:00 PM</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Ubicación -->
+                <div>
+                    <h4 class="font-cinzel text-base font-bold text-white mb-4 border-b border-gold-500/30 pb-2 inline-block">UBICACIÓN Y CONTACTO</h4>
+                    <ul class="space-y-3 text-xs">
+                        <li class="flex items-start space-x-3">
+                            <i class="fa-solid fa-location-dot text-gold-500 mt-0.5"></i>
+                            <span>Av. Principal #123, Colonia Centro, Ciudad de México</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i class="fa-solid fa-phone text-gold-500"></i>
+                            <span>+52 555 123 4567</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i class="fa-solid fa-envelope text-gold-500"></i>
+                            <span>contacto@thebarbershop.com</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: Redes Sociales -->
+                <div>
+                    <h4 class="font-cinzel text-base font-bold text-white mb-4 border-b border-gold-500/30 pb-2 inline-block">SÍGUENOS</h4>
+                    <p class="text-xs text-gray-400 mb-4">Mira nuestros últimos trabajos y promociones diarias en redes.</p>
+                    <div class="flex space-x-3">
+                        <a href="#" class="w-10 h-10 rounded-xl bg-dark-800 border border-dark-700 text-gold-500 hover:bg-gold-500 hover:text-black flex items-center justify-center transition-colors"><i class="fa-brands fa-instagram text-lg"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-xl bg-dark-800 border border-dark-700 text-gold-500 hover:bg-gold-500 hover:text-black flex items-center justify-center transition-colors"><i class="fa-brands fa-facebook-f text-lg"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-xl bg-dark-800 border border-dark-700 text-gold-500 hover:bg-gold-500 hover:text-black flex items-center justify-center transition-colors"><i class="fa-brands fa-tiktok text-lg"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Copyright -->
+            <div class="pt-8 border-t border-dark-800 text-center text-xs text-gray-500 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <p>&copy; 2026 THE BARBER SHOP. Todos los derechos reservados.</p>
+                <div class="flex space-x-4">
+                    <a href="#" class="hover:text-gold-500">Terminos y Condiciones</a>
+                    <a href="#" class="hover:text-gold-500">Politica de Privacidad</a>
+                </div>
+            </div>
+        </div>
     </footer>
 
     <!-- MODAL DE CONFIRMACIÓN -->

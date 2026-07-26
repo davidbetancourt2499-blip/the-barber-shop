@@ -53,7 +53,7 @@
     </script>
     
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="styles.css?v=7">
+    <link rel="stylesheet" href="styles.css?v=8">
 </head>
 <body class="bg-dark-900 text-gray-200 font-oregano selection:bg-gold-500 selection:text-black antialiased overflow-x-hidden">
 
@@ -255,7 +255,7 @@
         </div>
     </section>
 
-    <!-- 6. GALERÍA DE TRABAJOS -->
+    <!-- 6. GALERÍA DE TRABAJOS — Photo Stack -->
     <section id="galeria" class="py-24 bg-dark-800">
         <div class="container mx-auto px-4 md:px-8">
             <div class="text-center max-w-3xl mx-auto mb-16">
@@ -265,68 +265,27 @@
                 <p class="text-gray-400 text-sm md:text-base">Explora nuestra colección de cortes, arreglos de barba y el ambiente exclusivo de nuestro local.</p>
             </div>
 
-            <!-- Gallery Grid -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Gallery Item 1 -->
-                <div class="gallery-item group relative overflow-hidden rounded-2xl bg-dark-900 border border-dark-700 cursor-pointer h-72">
-                    <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=800&q=80" alt="Corte Skin Fade Classic" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                        <span class="text-gold-400 text-xs uppercase font-oregano font-bold">Skin Fade Classic</span>
-                        <h4 class="font-cinzel text-lg font-bold text-white">Degradado Perfecto</h4>
-                        <p class="text-xs text-gray-300 mt-1"><i class="fa-solid fa-magnifying-glass-plus mr-1"></i> Clic para ver ampliación</p>
+            <!-- Photo Stack -->
+            <a href="galeria.html" class="block group">
+                <div class="photo-stack">
+                    <div class="stack-card">
+                        <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=600&q=80" alt="Corte Clásico">
                     </div>
-                </div>
-
-                <!-- Gallery Item 2 -->
-                <div class="gallery-item group relative overflow-hidden rounded-2xl bg-dark-900 border border-dark-700 cursor-pointer h-72">
-                    <img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=800&q=80" alt="Perfilado de Barba Tradicional" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                        <span class="text-gold-400 text-xs uppercase font-oregano font-bold">Ritual de Barba</span>
-                        <h4 class="font-cinzel text-lg font-bold text-white">Perfilado a Navaja</h4>
-                        <p class="text-xs text-gray-300 mt-1"><i class="fa-solid fa-magnifying-glass-plus mr-1"></i> Clic para ver ampliación</p>
+                    <div class="stack-card">
+                        <img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=600&q=80" alt="Barba Perfilada">
                     </div>
-                </div>
-
-                <!-- Gallery Item 3 -->
-                <div class="gallery-item group relative overflow-hidden rounded-2xl bg-dark-900 border border-dark-700 cursor-pointer h-72">
-                    <img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=800&q=80" alt="Ambiente e Instalaciones" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                        <span class="text-gold-400 text-xs uppercase font-oregano font-bold">Instalaciones VIP</span>
-                        <h4 class="font-cinzel text-lg font-bold text-white">Sillones Clásicos</h4>
-                        <p class="text-xs text-gray-300 mt-1"><i class="fa-solid fa-magnifying-glass-plus mr-1"></i> Clic para ver ampliación</p>
+                    <div class="stack-card">
+                        <img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?auto=format&fit=crop&w=600&q=80" alt="Pompadour Moderno">
                     </div>
-                </div>
-
-                <!-- Gallery Item 4 -->
-                <div class="gallery-item group relative overflow-hidden rounded-2xl bg-dark-900 border border-dark-700 cursor-pointer h-72">
-                    <img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?auto=format&fit=crop&w=800&q=80" alt="Pompadour Moderno" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                        <span class="text-gold-400 text-xs uppercase font-oregano font-bold">Estilo Pompadour</span>
-                        <h4 class="font-cinzel text-lg font-bold text-white">Texturizado Moderno</h4>
-                        <p class="text-xs text-gray-300 mt-1"><i class="fa-solid fa-magnifying-glass-plus mr-1"></i> Clic para ver ampliación</p>
+                    <div class="stack-card">
+                        <img src="https://images.unsplash.com/photo-1517832606589-7150a6d828a2?auto=format&fit=crop&w=600&q=80" alt="Tinte y Color">
                     </div>
-                </div>
-
-                <!-- Gallery Item 5 -->
-                <div class="gallery-item group relative overflow-hidden rounded-2xl bg-dark-900 border border-dark-700 cursor-pointer h-72">
-                    <img src="https://images.unsplash.com/photo-1517832606589-7150a6d828a2?auto=format&fit=crop&w=800&q=80" alt="Pigmentación y Tinte" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                        <span class="text-gold-400 text-xs uppercase font-oregano font-bold">Colorimetría Masculina</span>
-                        <h4 class="font-cinzel text-lg font-bold text-white">Tinte y Pigmentación</h4>
-                        <p class="text-xs text-gray-300 mt-1"><i class="fa-solid fa-magnifying-glass-plus mr-1"></i> Clic para ver ampliación</p>
+                    <div class="stack-card">
+                        <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=600&q=80" alt="Herramientas Profesionales">
                     </div>
+                    <span class="stack-label">VER GALERÍA <i class="fa-solid fa-arrow-right"></i></span>
                 </div>
-
-                <!-- Gallery Item 6 -->
-                <div class="gallery-item group relative overflow-hidden rounded-2xl bg-dark-900 border border-dark-700 cursor-pointer h-72">
-                    <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=800&q=80" alt="Herramientas de Precisión" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                        <span class="text-gold-400 text-xs uppercase font-oregano font-bold">Herramientas Profesionales</span>
-                        <h4 class="font-cinzel text-lg font-bold text-white">Navajas y Máquinas de Corte</h4>
-                        <p class="text-xs text-gray-300 mt-1"><i class="fa-solid fa-magnifying-glass-plus mr-1"></i> Clic para ver ampliación</p>
-                    </div>
-                </div>
-            </div>
+            </a>
         </div>
     </section>
 
