@@ -6,6 +6,19 @@ html {
     color-scheme: light;
 }
 
+/* Font Color Scheme */
+.font-permanent {
+    color: #8B5CF6 !important;
+}
+
+.font-sedgwick {
+    color: #38BDF8 !important;
+}
+
+body {
+    color: #1A1A1A !important;
+}
+
 /* Custom Light Scrollbar */
 ::-webkit-scrollbar {
     width: 10px;
