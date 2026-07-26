@@ -55,11 +55,11 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="styles.css?v=8">
 </head>
-<body class="bg-dark-900 text-gray-200 font-oregano selection:bg-gold-500 selection:text-black antialiased overflow-x-hidden">
+<body class="bg-dark-900 text-gray-200 font-oregano selection:bg-gold-500 selection:text-black antialiased overflow-x-hidden relative">
 
     <!-- Full Page Background Image -->
-    <div class="fixed inset-0 z-0">
-        <img src="img/Rey_David.png" alt="" class="w-full h-full object-cover filter brightness-[0.25] contrast-125" style="object-position: center 20%; transform: scale(0.75);">
+    <div class="absolute inset-0 z-0" style="height: 100%;">
+        <img src="img/Rey_David.png" alt="" class="w-full h-full object-cover object-top filter brightness-[0.25] contrast-125" style="object-position: center top;">
     </div>
 
     <!-- HEADER FIJO (Sticky Navbar) -->
@@ -238,7 +238,7 @@
     </section>
 
     <!-- 6. GALERÍA DE TRABAJOS — Photo Stack -->
-    <section id="galeria" class="py-24 bg-dark-900/85">
+    <section id="galeria" class="py-24 bg-dark-900/85 relative">
         <div class="container mx-auto px-4 md:px-8">
             <div class="text-center max-w-3xl mx-auto mb-16">
                 <span class="text-gold-500 font-sedgwick text-xs uppercase tracking-[0.3em] font-bold block mb-2">GALERÍA DE ESTILOS</span>
