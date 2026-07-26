@@ -402,13 +402,13 @@ document.addEventListener('DOMContentLoaded', () => {
         if (nameOk && phoneOk && emailOk && dateOk && servicesOk) {
             submitBtn.disabled = false;
             submitBtn.classList.remove('bg-gray-700', 'text-gray-500', 'cursor-not-allowed');
-            submitBtn.classList.add('bg-gradient-to-r', 'from-gold-400', 'via-gold-500', 'to-gold-600', 'text-black', 'hover:from-gold-300', 'hover:to-gold-500', 'shadow-[0_0_30px_rgba(212,175,55,0.5)]', 'hover:scale-105', 'active:scale-95');
+            submitBtn.classList.add('bg-gradient-to-r', 'from-gold-400', 'via-gold-500', 'to-gold-600', 'text-black', 'hover:from-gold-300', 'hover:to-gold-500', 'shadow-[0_0_30px_rgba(255,30,66,0.5)]', 'hover:scale-105', 'active:scale-95');
             submitBtn.querySelector('i').classList.remove('fa-lock');
             submitBtn.querySelector('i').classList.add('fa-check-circle');
         } else {
             submitBtn.disabled = true;
             submitBtn.classList.add('bg-gray-700', 'text-gray-500', 'cursor-not-allowed');
-            submitBtn.classList.remove('bg-gradient-to-r', 'from-gold-400', 'via-gold-500', 'to-gold-600', 'text-black', 'hover:from-gold-300', 'hover:to-gold-500', 'shadow-[0_0_30px_rgba(212,175,55,0.5)]', 'hover:scale-105', 'active:scale-95');
+            submitBtn.classList.remove('bg-gradient-to-r', 'from-gold-400', 'via-gold-500', 'to-gold-600', 'text-black', 'hover:from-gold-300', 'hover:to-gold-500', 'shadow-[0_0_30px_rgba(255,30,66,0.5)]', 'hover:scale-105', 'active:scale-95');
             submitBtn.querySelector('i').classList.add('fa-lock');
             submitBtn.querySelector('i').classList.remove('fa-check-circle');
         }

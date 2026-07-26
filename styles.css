@@ -22,12 +22,12 @@ html {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #D4AF37;
+    background: #FF1E42;
 }
 
 /* Hero Background Radial Gradient Effect */
 .bg-radial-gradient {
-    background: radial-gradient(circle at center, rgba(212, 175, 55, 0.12) 0%, rgba(9, 9, 11, 0.85) 75%);
+    background: radial-gradient(circle at center, rgba(255, 30, 66, 0.15) 0%, rgba(9, 9, 11, 0.85) 75%);
 }
 
 /* Checkbox Card Styling & Active States */
@@ -37,18 +37,18 @@ html {
 
 .service-checkbox-card:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.15);
+    box-shadow: 0 8px 25px rgba(255, 30, 66, 0.2);
 }
 
 .service-checkbox-card.checked {
     background-color: rgba(28, 28, 34, 0.95);
-    border-color: #D4AF37 !important;
-    box-shadow: 0 0 25px rgba(212, 175, 55, 0.35);
+    border-color: #FF1E42 !important;
+    box-shadow: 0 0 25px rgba(255, 30, 66, 0.4);
 }
 
 .service-checkbox-card.checked .custom-check-icon {
-    background-color: #D4AF37;
-    border-color: #D4AF37;
+    background-color: #FF1E42;
+    border-color: #FF1E42;
 }
 
 .service-checkbox-card.checked .custom-check-icon i {
@@ -62,18 +62,18 @@ html {
 
 .barber-card:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.15);
+    box-shadow: 0 8px 25px rgba(255, 30, 66, 0.2);
 }
 
 .barber-card.checked {
     background-color: rgba(28, 28, 34, 0.95);
-    border-color: #D4AF37 !important;
-    box-shadow: 0 0 25px rgba(212, 175, 55, 0.35);
+    border-color: #FF1E42 !important;
+    box-shadow: 0 0 25px rgba(255, 30, 66, 0.4);
 }
 
 .barber-card.checked .barber-check-icon {
-    background-color: #D4AF37;
-    border-color: #D4AF37;
+    background-color: #FF1E42;
+    border-color: #FF1E42;
 }
 
 .barber-card.checked .barber-check-icon i {
@@ -83,10 +83,10 @@ html {
 /* Glowing Border Animations */
 @keyframes goldPulse {
     0%, 100% {
-        box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+        box-shadow: 0 0 15px rgba(255, 30, 66, 0.3);
     }
     50% {
-        box-shadow: 0 0 30px rgba(212, 175, 55, 0.7);
+        box-shadow: 0 0 30px rgba(255, 30, 66, 0.8);
     }
 }
 
@@ -96,24 +96,24 @@ html {
 
 /* Active Nav link underline indicator */
 .nav-link.active {
-    color: #D4AF37 !important;
-    border-bottom-color: #D4AF37 !important;
+    color: #FF1E42 !important;
+    border-bottom-color: #FF1E42 !important;
 }
 
 /* Time Slot Active State */
 .time-slot-btn.active {
-    background-color: #D4AF37 !important;
-    color: #000000 !important;
-    border-color: #D4AF37 !important;
-    box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+    background-color: #FF1E42 !important;
+    color: #FFFFFF !important;
+    border-color: #FF1E42 !important;
+    box-shadow: 0 0 15px rgba(255, 30, 66, 0.5);
 }
 
 /* Time Preference Active State */
 .time-preference-btn.active {
-    background-color: #D4AF37 !important;
-    color: #000000 !important;
-    border-color: #D4AF37 !important;
-    box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+    background-color: #FF1E42 !important;
+    color: #FFFFFF !important;
+    border-color: #FF1E42 !important;
+    box-shadow: 0 0 15px rgba(255, 30, 66, 0.5);
     font-weight: 700;
 }
 
@@ -209,7 +209,7 @@ html {
     display: flex;
     align-items: center;
     gap: 8px;
-    color: #D4AF37;
+    color: #FF1E42;
     font-family: 'Sedgwick Ave', cursive;
     font-size: 1rem;
     letter-spacing: 0.15em;
@@ -220,7 +220,7 @@ html {
 
 .photo-stack:hover .stack-label {
     letter-spacing: 0.25em;
-    color: #F3E5AB;
+    color: #FF6B81;
 }
 
 .photo-stack .stack-label i {
@@ -248,7 +248,7 @@ html {
 }
 .galeria-card:hover {
     transform: translateY(-6px);
-    box-shadow: 0 12px 35px rgba(212, 175, 55, 0.2);
+    box-shadow: 0 12px 35px rgba(255, 30, 66, 0.3);
 }
 
 /* Oregano — font-size compensation (~15% larger) */
