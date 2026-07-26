@@ -3,22 +3,22 @@
 /* Base & Typography Setup */
 html {
     scroll-behavior: smooth;
-    color-scheme: dark;
+    color-scheme: light;
 }
 
-/* Custom Dark Scrollbar */
+/* Custom Light Scrollbar */
 ::-webkit-scrollbar {
     width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-    background: #09090B;
+    background: #FBF6EE;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #2A2A35;
+    background: #D6C9B4;
     border-radius: 5px;
-    border: 2px solid #09090B;
+    border: 2px solid #FBF6EE;
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -27,7 +27,7 @@ html {
 
 /* Hero Background Radial Gradient Effect */
 .bg-radial-gradient {
-    background: radial-gradient(circle at center, rgba(255, 30, 66, 0.15) 0%, rgba(9, 9, 11, 0.85) 75%);
+    background: radial-gradient(circle at center, rgba(255, 30, 66, 0.08) 0%, rgba(251, 246, 238, 0.9) 75%);
 }
 
 /* Checkbox Card Styling & Active States */
@@ -37,13 +37,13 @@ html {
 
 .service-checkbox-card:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(255, 30, 66, 0.2);
+    box-shadow: 0 8px 25px rgba(255, 30, 66, 0.12);
 }
 
 .service-checkbox-card.checked {
-    background-color: rgba(28, 28, 34, 0.95);
+    background-color: rgba(255, 252, 245, 0.95);
     border-color: #FF1E42 !important;
-    box-shadow: 0 0 25px rgba(255, 30, 66, 0.4);
+    box-shadow: 0 0 25px rgba(255, 30, 66, 0.2);
 }
 
 .service-checkbox-card.checked .custom-check-icon {
@@ -62,13 +62,13 @@ html {
 
 .barber-card:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(255, 30, 66, 0.2);
+    box-shadow: 0 8px 25px rgba(255, 30, 66, 0.12);
 }
 
 .barber-card.checked {
-    background-color: rgba(28, 28, 34, 0.95);
+    background-color: rgba(255, 252, 245, 0.95);
     border-color: #FF1E42 !important;
-    box-shadow: 0 0 25px rgba(255, 30, 66, 0.4);
+    box-shadow: 0 0 25px rgba(255, 30, 66, 0.2);
 }
 
 .barber-card.checked .barber-check-icon {
@@ -83,10 +83,10 @@ html {
 /* Glowing Border Animations */
 @keyframes goldPulse {
     0%, 100% {
-        box-shadow: 0 0 15px rgba(255, 30, 66, 0.3);
+        box-shadow: 0 0 15px rgba(255, 30, 66, 0.2);
     }
     50% {
-        box-shadow: 0 0 30px rgba(255, 30, 66, 0.8);
+        box-shadow: 0 0 30px rgba(255, 30, 66, 0.5);
     }
 }
 
@@ -105,7 +105,7 @@ html {
     background-color: #FF1E42 !important;
     color: #FFFFFF !important;
     border-color: #FF1E42 !important;
-    box-shadow: 0 0 15px rgba(255, 30, 66, 0.5);
+    box-shadow: 0 0 15px rgba(255, 30, 66, 0.3);
 }
 
 /* Time Preference Active State */
@@ -113,7 +113,7 @@ html {
     background-color: #FF1E42 !important;
     color: #FFFFFF !important;
     border-color: #FF1E42 !important;
-    box-shadow: 0 0 15px rgba(255, 30, 66, 0.5);
+    box-shadow: 0 0 15px rgba(255, 30, 66, 0.3);
     font-weight: 700;
 }
 
@@ -148,12 +148,12 @@ html {
     height: 340px;
     border-radius: 12px;
     overflow: hidden;
-    border: 5px solid #f5f0e8;
-    box-shadow: 0 8px 30px rgba(0,0,0,0.45);
+    border: 5px solid #fff;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.15);
     transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     top: 50%;
     left: 50%;
-    background: #1a1a1a;
+    background: #F5EDE0;
 }
 
 .photo-stack .stack-card img {
@@ -215,12 +215,11 @@ html {
     letter-spacing: 0.15em;
     text-transform: uppercase;
     transition: all 0.3s ease;
-    text-shadow: 0 2px 8px rgba(0,0,0,0.6);
 }
 
 .photo-stack:hover .stack-label {
     letter-spacing: 0.25em;
-    color: #FF6B81;
+    color: #D90429;
 }
 
 .photo-stack .stack-label i {
@@ -248,7 +247,7 @@ html {
 }
 .galeria-card:hover {
     transform: translateY(-6px);
-    box-shadow: 0 12px 35px rgba(255, 30, 66, 0.3);
+    box-shadow: 0 12px 35px rgba(255, 30, 66, 0.15);
 }
 
 /* Oregano — font-size compensation (~15% larger) */
