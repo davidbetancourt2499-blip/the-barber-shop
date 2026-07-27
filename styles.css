@@ -51,6 +51,68 @@
     transform: scale(1.02);
 }
 
+/* ─── Hero Scissors ─── */
+.hero-scissors {
+    animation: scissors-swing 4s ease-in-out infinite;
+    filter: drop-shadow(0 0 8px rgba(212,175,55,0.3));
+}
+.hero-scissors:last-of-type {
+    animation-delay: -2s;
+    transform: translateY(-50%) scaleX(-1);
+}
+@keyframes scissors-swing {
+    0%, 100% { transform: translateY(-50%) rotate(0deg); }
+    25% { transform: translateY(-50%) rotate(8deg); }
+    75% { transform: translateY(-50%) rotate(-8deg); }
+}
+
+/* ─── Barber Pole Animation ─── */
+.barber-pole-left,
+.barber-pole-right {
+    background: repeating-linear-gradient(
+        -45deg,
+        #c0392b,
+        #c0392b 8px,
+        #fffffe 8px,
+        #fffffe 16px,
+        #2980b9 16px,
+        #2980b9 24px,
+        #fffffe 24px,
+        #fffffe 32px
+    );
+    background-size: 45px 45px;
+    animation: barber-pole-scroll 2s linear infinite;
+    opacity: 0.6;
+}
+.barber-pole-right {
+    animation-direction: reverse;
+}
+@keyframes barber-pole-scroll {
+    0% { background-position: 0 0; }
+    100% { background-position: 45px 45px; }
+}
+
+/* ─── Urban Corner Borders ─── */
+#hero .absolute[class*="border-"] {
+    opacity: 0;
+    animation: corner-appear 0.8s ease-out 0.5s forwards;
+}
+@keyframes corner-appear {
+    to { opacity: 1; }
+}
+
+/* ─── Reduced Motion ─── */
+@media (prefers-reduced-motion: reduce) {
+    .hero-scissors,
+    .barber-pole-left,
+    .barber-pole-right {
+        animation: none;
+    }
+    .hero-title-urban:hover {
+        transform: none;
+    }
+}
+
 /* ─── Base & Typography Setup ─── */
 html {
     scroll-behavior: smooth;

@@ -66,7 +66,7 @@
     </script>
     
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="styles.css?v=15">
+    <link rel="stylesheet" href="styles.css?v=16">
 </head>
 <body class="bg-dark-900 text-[#fffffe] font-oregano selection:bg-red-500 selection:text-[#fffffe] antialiased overflow-x-hidden relative">
 
@@ -121,14 +121,56 @@
     <!-- 3. HERO SECTION -->
     <section id="hero" class="relative min-h-[100dvh] flex items-center justify-center overflow-hidden py-20">
 
+        <!-- Barber Pole Left -->
+        <div class="barber-pole-left absolute left-0 top-0 h-full w-3 z-20"></div>
+        <!-- Barber Pole Right -->
+        <div class="barber-pole-right absolute right-0 top-0 h-full w-3 z-20"></div>
+
+        <!-- Urban Corner Borders -->
+        <div class="absolute top-6 left-6 w-16 h-16 border-t-2 border-l-2 border-gold-500/40 z-20"></div>
+        <div class="absolute top-6 right-6 w-16 h-16 border-t-2 border-r-2 border-gold-500/40 z-20"></div>
+        <div class="absolute bottom-6 left-6 w-16 h-16 border-b-2 border-l-2 border-gold-500/40 z-20"></div>
+        <div class="absolute bottom-6 right-6 w-16 h-16 border-b-2 border-r-2 border-gold-500/40 z-20"></div>
+
+        <!-- Urban Accent Lines -->
+        <div class="absolute top-8 left-24 w-12 h-0.5 bg-gold-500/30 z-20"></div>
+        <div class="absolute top-8 right-24 w-12 h-0.5 bg-gold-500/30 z-20"></div>
+        <div class="absolute bottom-8 left-24 w-12 h-0.5 bg-gold-500/30 z-20"></div>
+        <div class="absolute bottom-8 right-24 w-12 h-0.5 bg-gold-500/30 z-20"></div>
+
         <div class="container mx-auto px-4 md:px-8 relative z-10 text-center max-w-4xl">
 
-            <!-- Title -->
-            <h1 class="mb-6 hero-animate-logo">
+            <!-- Title with Scissors -->
+            <h1 class="mb-4 hero-animate-logo relative">
+                <!-- Left Scissors -->
+                <svg class="hero-scissors absolute -left-4 sm:left-0 md:-left-12 lg:-left-16 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 text-gold-500/70 hover:text-gold-400 transition-colors duration-300" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="18" cy="50" r="8"/>
+                    <circle cx="18" cy="14" r="8"/>
+                    <line x1="24" y1="44" x2="58" y2="10"/>
+                    <line x1="24" y1="20" x2="58" y2="54"/>
+                </svg>
+
                 <span class="hero-title-urban block text-[#fffffe] text-5xl sm:text-7xl md:text-8xl lg:text-9xl text-center leading-none">
                     THE<br class="sm:hidden"> BARBER<br class="sm:hidden"> SHOP
                 </span>
+
+                <!-- Right Scissors -->
+                <svg class="hero-scissors absolute -right-4 sm:right-0 md:-right-12 lg:-right-16 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 text-gold-500/70 hover:text-gold-400 transition-colors duration-300" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="46" cy="50" r="8"/>
+                    <circle cx="46" cy="14" r="8"/>
+                    <line x1="40" y1="44" x2="6" y2="10"/>
+                    <line x1="40" y1="20" x2="6" y2="54"/>
+                </svg>
             </h1>
+
+            <!-- Ornamental Divider with Razor -->
+            <div class="flex items-center justify-center gap-3 mb-6 hero-animate-subtitle">
+                <div class="w-16 sm:w-24 h-px bg-gradient-to-r from-transparent to-gold-500"></div>
+                <svg class="w-6 h-6 sm:w-8 sm:h-8 text-gold-500" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+                    <path d="M28 4H18L14 8L16 12L12 16L8 12L4 16V28H28V4ZM14 22L10 18L14 14L18 18L14 22Z"/>
+                </svg>
+                <div class="w-16 sm:w-24 h-px bg-gradient-to-l from-transparent to-gold-500"></div>
+            </div>
 
             <!-- Subtitle -->
             <p class="hero-animate-subtitle text-[#fffffe] text-base sm:text-xl font-light max-w-2xl mx-auto mb-10 leading-relaxed">
