@@ -66,7 +66,7 @@
     </script>
     
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="styles.css?v=16">
+    <link rel="stylesheet" href="styles.css?v=17">
 </head>
 <body class="bg-dark-900 text-[#fffffe] font-oregano selection:bg-red-500 selection:text-[#fffffe] antialiased overflow-x-hidden relative">
 
@@ -121,12 +121,82 @@
     <!-- 3. HERO SECTION -->
     <section id="hero" class="relative min-h-[100dvh] flex items-center justify-center overflow-hidden py-20">
 
-        <!-- Barber Pole Left -->
+        <!-- LAYER 0: Dark Base -->
+        <div class="absolute inset-0 bg-dark-900"></div>
+
+        <!-- LAYER 1: Grunge/Wall Texture -->
+        <div class="hero-grunge absolute inset-0 z-[1]"></div>
+
+        <!-- LAYER 2: Gold Spotlights -->
+        <div class="hero-spotlight absolute inset-0 z-[2]"></div>
+
+        <!-- LAYER 3: Abstract Geometry -->
+        <div class="absolute inset-0 z-[3] overflow-hidden pointer-events-none" aria-hidden="true">
+            <svg class="absolute top-1/4 left-1/4 w-96 h-96 text-gold-500/[0.04] hero-geo-spin" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="0.5">
+                <polygon points="100,10 190,60 190,140 100,190 10,140 10,60"/>
+            </svg>
+            <svg class="absolute bottom-1/4 right-1/4 w-64 h-64 text-gold-500/[0.03] hero-geo-spin-reverse" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="0.5">
+                <circle cx="100" cy="100" r="90"/>
+                <circle cx="100" cy="100" r="60"/>
+                <circle cx="100" cy="100" r="30"/>
+            </svg>
+            <svg class="absolute top-1/3 right-1/6 w-48 h-48 text-gold-500/[0.03]" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="0.5">
+                <rect x="30" y="30" width="140" height="140" transform="rotate(45 100 100)"/>
+            </svg>
+        </div>
+
+        <!-- LAYER 4: Floating Barber Tools -->
+        <div class="absolute inset-0 z-[4] overflow-hidden pointer-events-none" aria-hidden="true">
+            <!-- Floating Scissors -->
+            <svg class="absolute top-[15%] left-[8%] w-12 h-12 text-gold-500/[0.07] float-tool-1" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5">
+                <circle cx="18" cy="50" r="8"/><circle cx="18" cy="14" r="8"/>
+                <line x1="24" y1="44" x2="58" y2="10"/><line x1="24" y1="20" x2="58" y2="54"/>
+            </svg>
+            <!-- Floating Comb -->
+            <svg class="absolute top-[20%] right-[12%] w-16 h-16 text-gold-500/[0.06] float-tool-2" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="12" y="8" width="40" height="48" rx="4"/>
+                <line x1="20" y1="8" x2="20" y2="32"/><line x1="28" y1="8" x2="28" y2="32"/>
+                <line x1="36" y1="8" x2="36" y2="32"/><line x1="44" y1="8" x2="44" y2="32"/>
+            </svg>
+            <!-- Floating Razor -->
+            <svg class="absolute bottom-[25%] left-[15%] w-10 h-10 text-gold-500/[0.06] float-tool-3" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M8 52L56 8"/><rect x="4" y="48" width="12" height="12" rx="2"/>
+            </svg>
+            <!-- Floating Scissors 2 -->
+            <svg class="absolute bottom-[20%] right-[10%] w-14 h-14 text-gold-500/[0.05] float-tool-4" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5">
+                <circle cx="46" cy="50" r="8"/><circle cx="46" cy="14" r="8"/>
+                <line x1="40" y1="44" x2="6" y2="10"/><line x1="40" y1="20" x2="6" y2="54"/>
+            </svg>
+            <!-- Floating Comb 2 -->
+            <svg class="absolute top-[60%] left-[5%] w-8 h-8 text-gold-500/[0.05] float-tool-2" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="12" y="8" width="40" height="48" rx="4"/>
+                <line x1="20" y1="8" x2="20" y2="32"/><line x1="28" y1="8" x2="28" y2="32"/>
+                <line x1="36" y1="8" x2="36" y2="32"/><line x1="44" y1="8" x2="44" y2="32"/>
+            </svg>
+            <!-- Floating Razor 2 -->
+            <svg class="absolute top-[70%] right-[6%] w-10 h-10 text-gold-500/[0.04] float-tool-3" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M8 52L56 8"/><rect x="4" y="48" width="12" height="12" rx="2"/>
+            </svg>
+        </div>
+
+        <!-- LAYER 5: Barbershop Chair Silhouette -->
+        <div class="absolute inset-0 z-[5] flex items-end justify-center pointer-events-none" aria-hidden="true">
+            <svg class="w-[500px] h-[350px] md:w-[700px] md:h-[450px] text-gold-500/[0.03] mb-0 translate-y-1/4" viewBox="0 0 200 140" fill="currentColor">
+                <!-- Simplified barbershop chair silhouette -->
+                <path d="M60 20 C60 10 70 5 80 5 L120 5 C130 5 140 10 140 20 L140 50 C140 55 138 58 135 60 L135 90 C135 95 130 100 125 100 L75 100 C70 100 65 95 65 90 L65 60 C62 58 60 55 60 50 Z"/>
+                <rect x="70" y="100" width="60" height="8" rx="4"/>
+                <rect x="60" y="108" width="10" height="20" rx="3"/>
+                <rect x="130" y="108" width="10" height="20" rx="3"/>
+                <ellipse cx="100" cy="135" rx="50" ry="5"/>
+            </svg>
+        </div>
+
+        <!-- LAYER 6: Barber Pole Left -->
         <div class="barber-pole-left absolute left-0 top-0 h-full w-3 z-20"></div>
         <!-- Barber Pole Right -->
         <div class="barber-pole-right absolute right-0 top-0 h-full w-3 z-20"></div>
 
-        <!-- Urban Corner Borders -->
+        <!-- LAYER 7: Urban Corner Borders -->
         <div class="absolute top-6 left-6 w-16 h-16 border-t-2 border-l-2 border-gold-500/40 z-20"></div>
         <div class="absolute top-6 right-6 w-16 h-16 border-t-2 border-r-2 border-gold-500/40 z-20"></div>
         <div class="absolute bottom-6 left-6 w-16 h-16 border-b-2 border-l-2 border-gold-500/40 z-20"></div>
@@ -138,7 +208,7 @@
         <div class="absolute bottom-8 left-24 w-12 h-0.5 bg-gold-500/30 z-20"></div>
         <div class="absolute bottom-8 right-24 w-12 h-0.5 bg-gold-500/30 z-20"></div>
 
-        <div class="container mx-auto px-4 md:px-8 relative z-10 text-center max-w-4xl">
+        <div class="container mx-auto px-4 md:px-8 relative z-30 text-center max-w-4xl">
 
             <!-- Title with Scissors -->
             <h1 class="mb-4 hero-animate-logo relative">

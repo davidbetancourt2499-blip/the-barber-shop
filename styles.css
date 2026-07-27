@@ -66,6 +66,47 @@
     75% { transform: translateY(-50%) rotate(-8deg); }
 }
 
+/* ─── Hero Grunge Texture ─── */
+.hero-grunge {
+    background-image:
+        radial-gradient(ellipse at 20% 50%, rgba(212,175,55,0.03) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 50%, rgba(212,175,55,0.02) 0%, transparent 50%),
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    opacity: 0.8;
+}
+
+/* ─── Hero Spotlights ─── */
+.hero-spotlight {
+    background:
+        radial-gradient(ellipse 600px 400px at 50% 40%, rgba(212,175,55,0.08) 0%, transparent 70%),
+        radial-gradient(ellipse 300px 300px at 20% 60%, rgba(212,175,55,0.04) 0%, transparent 60%),
+        radial-gradient(ellipse 300px 300px at 80% 60%, rgba(212,175,55,0.04) 0%, transparent 60%);
+    animation: spotlight-pulse 6s ease-in-out infinite alternate;
+}
+@keyframes spotlight-pulse {
+    0% { opacity: 0.7; }
+    100% { opacity: 1; }
+}
+
+/* ─── Floating Tools ─── */
+.float-tool-1 { animation: float-drift 8s ease-in-out infinite; }
+.float-tool-2 { animation: float-drift 10s ease-in-out infinite reverse; animation-delay: -2s; }
+.float-tool-3 { animation: float-drift 9s ease-in-out infinite; animation-delay: -4s; }
+.float-tool-4 { animation: float-drift 11s ease-in-out infinite reverse; animation-delay: -1s; }
+@keyframes float-drift {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    33% { transform: translateY(-15px) rotate(5deg); }
+    66% { transform: translateY(10px) rotate(-3deg); }
+}
+
+/* ─── Geometry Spin ─── */
+.hero-geo-spin { animation: geo-rotate 30s linear infinite; }
+.hero-geo-spin-reverse { animation: geo-rotate 40s linear infinite reverse; }
+@keyframes geo-rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
 /* ─── Barber Pole Animation ─── */
 .barber-pole-left,
 .barber-pole-right {
@@ -105,7 +146,14 @@
 @media (prefers-reduced-motion: reduce) {
     .hero-scissors,
     .barber-pole-left,
-    .barber-pole-right {
+    .barber-pole-right,
+    .float-tool-1,
+    .float-tool-2,
+    .float-tool-3,
+    .float-tool-4,
+    .hero-geo-spin,
+    .hero-geo-spin-reverse,
+    .hero-spotlight {
         animation: none;
     }
     .hero-title-urban:hover {
