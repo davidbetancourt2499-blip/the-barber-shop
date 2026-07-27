@@ -186,9 +186,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (barberCards.length > 0) {
         barberCards.forEach((card) => {
-            card.addEventListener('click', () => {
-                if (!card.hasAttribute('onclick')) {
-                    const radio = card.querySelector('.barber-radio');
+            card.addEventListener('click', (e) => {
+                if (e.target.closest('a')) return;
+                if (card.hasAttribute('data-nav')) {
+                    window.location.href = card.getAttribute('data-nav');
+                    return;
+                }
+
+                const radio = card.querySelector('.barber-radio');
                     if (!radio) return;
 
                     // Toggle off if "Sin preferencia" is already selected
@@ -219,7 +224,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         if (cardDouglas) cardDouglas.classList.remove('hidden');
                         if (cardCristopher) cardCristopher.classList.remove('hidden');
                     }
-                }
             });
         });
 
@@ -576,5 +580,65 @@ document.addEventListener('DOMContentLoaded', () => {
         };
         window.addEventListener('scroll', onScroll, { passive: true });
         onScroll();
+    }
+
+    // -------------------------------------------------------------
+    // 13. PARALLAX TILT (barber cards — desktop only)
+    // -------------------------------------------------------------
+    if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+        const tiltCards = document.querySelectorAll('.tilt-card');
+        const MAX_TILT = 8;
+
+        tiltCards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = ((y - centerY) / centerY) * -MAX_TILT;
+                const rotateY = ((x - centerX) / centerX) * MAX_TILT;
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';
+            });
+        });
+    }
+
+    // -------------------------------------------------------------
+    // 14. SPOTLIGHT BORDER (service cards — CSS variable tracking)
+    // -------------------------------------------------------------
+    if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+        const spotlightCards = document.querySelectorAll('.spotlight-card');
+        spotlightCards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', x + 'px');
+                card.style.setProperty('--mouse-y', y + 'px');
+            });
+        });
+    }
+
+    // -------------------------------------------------------------
+    // 15. MAGNETIC BUTTON (CTA header)
+    // -------------------------------------------------------------
+    if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+        const magneticBtns = document.querySelectorAll('.magnetic-btn');
+        magneticBtns.forEach(btn => {
+            btn.addEventListener('mousemove', (e) => {
+                const rect = btn.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                btn.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px) scale(1.03)`;
+            });
+
+            btn.addEventListener('mouseleave', () => {
+                btn.style.transform = 'translate(0px, 0px) scale(1)';
+            });
+        });
     }
 });

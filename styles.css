@@ -34,6 +34,16 @@ html {
     color-scheme: dark;
 }
 
+/* ─── Scroll-margin-top for heading anchors (offset sticky header) ─── */
+[id] {
+    scroll-margin-top: 5rem;
+}
+
+/* ─── Touch action — prevent double-tap zoom delay ─── */
+body {
+    touch-action: manipulation;
+}
+
 /* ─── Noise/Grain Overlay (break digital flatness) ─── */
 body::after {
     content: '';
@@ -221,6 +231,11 @@ a, button, [role="button"] {
 }
 
 /* ─── Modal Animation (scale from 0.95, not 0 — Emil Kowalski) ─── */
+#confirmation-modal,
+#gallery-lightbox {
+    overscroll-behavior: contain;
+}
+
 #confirmation-modal {
     transition: opacity var(--duration-normal) var(--ease-out);
 }
@@ -390,6 +405,90 @@ a, button, [role="button"] {
 :focus-visible {
     outline: 2px solid #d4af37;
     outline-offset: 2px;
+}
+
+/* ─── Parallax Tilt (barber cards — desktop only) ─── */
+@media (hover: hover) and (pointer: fine) {
+    .tilt-card {
+        transform-style: preserve-3d;
+        transition: transform 0.3s var(--ease-out);
+    }
+    .tilt-card .tilt-inner {
+        transform: translateZ(30px);
+    }
+}
+
+/* ─── Spotlight Border (service cards — CSS variables driven) ─── */
+@media (hover: hover) and (pointer: fine) {
+    .spotlight-card {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .spotlight-card::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        padding: 2px;
+        background: radial-gradient(
+            600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+            rgba(212, 175, 55, 0.4),
+            transparent 40%
+        );
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .spotlight-card:hover::before {
+        opacity: 1;
+    }
+}
+
+/* ─── Glassmorphism (booking form) ─── */
+.glass-panel {
+    background: rgba(11, 11, 11, 0.55);
+    backdrop-filter: blur(20px) saturate(1.8);
+    -webkit-backdrop-filter: blur(20px) saturate(1.8);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    box-shadow:
+        inset 0 1px 1px rgba(255, 255, 255, 0.08),
+        inset 0 -1px 2px rgba(0, 0, 0, 0.3),
+        0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+/* ─── Holographic Foil (hero logo — hover only) ─── */
+@keyframes holographic {
+    0%   { filter: hue-rotate(0deg) brightness(1); }
+    25%  { filter: hue-rotate(15deg) brightness(1.05); }
+    50%  { filter: hue-rotate(0deg) brightness(1); }
+    75%  { filter: hue-rotate(-15deg) brightness(1.05); }
+    100% { filter: hue-rotate(0deg) brightness(1); }
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .holographic-logo {
+        transition: filter 0.4s ease;
+    }
+    .holographic-logo:hover {
+        animation: holographic 2s ease-in-out infinite;
+    }
+}
+
+/* ─── Magnetic Button (CTA header) ─── */
+.magnetic-btn {
+    transition: transform 0.25s var(--ease-out);
+    will-change: transform;
+}
+
+/* ─── Z-Axis Depth (photo stack refine) ─── */
+.photo-stack {
+    perspective: 800px;
+    transform-style: preserve-3d;
 }
 
 /* ─── Skip-to-Content Link ─── */
