@@ -1,6 +1,15 @@
 /* Custom CSS Styles for THE BARBER SHOP Landing Page */
 /* Craft improvements based on Emil Kowalski's design engineering philosophy */
 
+/* Urban Jungle Font */
+@font-face {
+    font-family: 'UrbanJungle';
+    src: url('fonts/urban-jungle/UrbanJungleDEMO.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
 /* Chicanos Font */
 @font-face {
     font-family: 'Chicanos';
@@ -26,6 +35,20 @@
     font-weight: normal;
     font-style: normal;
     font-display: swap;
+}
+
+/* ─── Urban Jungle Hero Title ─── */
+.hero-title-urban {
+    font-family: 'UrbanJungle', cursive;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    line-height: 0.95;
+    text-shadow: 0 0 40px rgba(212,175,55,0.3), 0 4px 20px rgba(0,0,0,0.5);
+    transition: text-shadow 0.4s ease, transform 0.4s ease;
+}
+.hero-title-urban:hover {
+    text-shadow: 0 0 60px rgba(212,175,55,0.5), 0 4px 30px rgba(0,0,0,0.7);
+    transform: scale(1.02);
 }
 
 /* ─── Base & Typography Setup ─── */
