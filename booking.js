@@ -44,6 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (cb) {
                 cb.checked = !cb.checked;
                 calculateTotal();
+                checkFormComplete();
             }
         });
     });
@@ -53,6 +54,28 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     calculateTotal();
+
+    // -------------------------------------------------------------
+    // 2A. INLINE FORM ERRORS (replace alert())
+    // -------------------------------------------------------------
+    const formErrorEl = document.getElementById('form-error');
+    let formErrorTimeout = null;
+
+    function showFormError(msg) {
+        if (!formErrorEl) return;
+        const span = formErrorEl.querySelector('span');
+        if (span) span.textContent = msg;
+        formErrorEl.classList.remove('hidden');
+        clearTimeout(formErrorTimeout);
+        formErrorTimeout = setTimeout(() => {
+            formErrorEl.classList.add('hidden');
+        }, 4000);
+    }
+
+    function hideFormError() {
+        if (formErrorEl) formErrorEl.classList.add('hidden');
+        clearTimeout(formErrorTimeout);
+    }
 
     // -------------------------------------------------------------
     // 2. QUICK SERVICE SELECTION (from service cards section)
@@ -224,21 +247,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function unlockStep3() {
         if (step3Wrapper) step3Wrapper.classList.remove('hidden');
-        if (submitSection) submitSection.classList.remove('hidden');
         if (servicesSection) servicesSection.classList.remove('hidden');
+        checkFormComplete();
     }
 
     function lockStep3() {
         if (step3Wrapper) step3Wrapper.classList.add('hidden');
         if (submitSection) submitSection.classList.add('hidden');
         if (servicesSection) servicesSection.classList.add('hidden');
-    }
-
-    // If no barber selector exists (douglas/cristopher pages), step 3 is always unlocked
-    if (barberCards.length === 0) {
-        unlockStep3();
-    } else {
-        lockStep3();
     }
 
     // -------------------------------------------------------------
@@ -271,7 +287,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             if (selectedServices.length === 0) {
-                alert('Por favor selecciona al menos un servicio para tu cita.');
+                showFormError('Selecciona al menos un servicio para continuar.');
                 return;
             }
 
@@ -302,7 +318,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Validate time only if specific barber selected
             if (!isSinPreferencia && !time) {
-                alert('Por favor selecciona un bloque de hora para tu cita.');
+                showFormError('Selecciona un bloque de hora para continuar.');
                 return;
             }
 
@@ -398,19 +414,28 @@ document.addEventListener('DOMContentLoaded', () => {
         const emailOk = clientEmail && clientEmail.value.trim().length > 0 && clientEmail.value.includes('@');
         const dateOk = clientDate && clientDate.value.length > 0;
         const servicesOk = Array.from(checkboxes).some(cb => cb.checked);
+        const allValid = nameOk && phoneOk && emailOk && dateOk && servicesOk;
 
-        if (nameOk && phoneOk && emailOk && dateOk && servicesOk) {
+        if (allValid) {
             submitBtn.disabled = false;
             submitBtn.classList.remove('bg-gray-700', 'text-gray-500', 'cursor-not-allowed');
-            submitBtn.classList.add('bg-gradient-to-r', 'from-gold-400', 'via-gold-500', 'to-gold-600', 'text-black', 'hover:from-gold-300', 'hover:to-gold-500', 'shadow-[0_0_30px_rgba(139,92,246,0.5)]', 'hover:scale-105', 'active:scale-95');
+            submitBtn.classList.add('bg-gradient-to-r', 'from-gold-400', 'via-gold-500', 'to-gold-600', 'text-black', 'hover:from-gold-300', 'hover:to-gold-500', 'shadow-[0_0_30px_rgba(212,175,55,0.5)]', 'hover:scale-105', 'active:scale-95');
             submitBtn.querySelector('i').classList.remove('fa-lock');
             submitBtn.querySelector('i').classList.add('fa-check-circle');
         } else {
             submitBtn.disabled = true;
             submitBtn.classList.add('bg-gray-700', 'text-gray-500', 'cursor-not-allowed');
-            submitBtn.classList.remove('bg-gradient-to-r', 'from-gold-400', 'via-gold-500', 'to-gold-600', 'text-black', 'hover:from-gold-300', 'hover:to-gold-500', 'shadow-[0_0_30px_rgba(139,92,246,0.5)]', 'hover:scale-105', 'active:scale-95');
+            submitBtn.classList.remove('bg-gradient-to-r', 'from-gold-400', 'via-gold-500', 'to-gold-600', 'text-black', 'hover:from-gold-300', 'hover:to-gold-500', 'shadow-[0_0_30px_rgba(212,175,55,0.5)]', 'hover:scale-105', 'active:scale-95');
             submitBtn.querySelector('i').classList.add('fa-lock');
             submitBtn.querySelector('i').classList.remove('fa-check-circle');
+        }
+
+        if (submitSection) {
+            if (allValid) {
+                submitSection.classList.remove('hidden');
+            } else {
+                submitSection.classList.add('hidden');
+            }
         }
     }
 
@@ -505,4 +530,51 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // -------------------------------------------------------------
+    // 10. INIT: unlock/lock step 3 (AFTER all variables are declared)
+    // -------------------------------------------------------------
+    if (barberCards.length === 0) {
+        unlockStep3();
+    } else {
+        lockStep3();
+    }
+
+    // -------------------------------------------------------------
+    // 11. SCROLL REVEAL (IntersectionObserver)
+    // -------------------------------------------------------------
+    const scrollRevealElements = document.querySelectorAll('.scroll-reveal, .animate-divider');
+    if (scrollRevealElements.length > 0 && 'IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+        scrollRevealElements.forEach(el => observer.observe(el));
+    } else {
+        scrollRevealElements.forEach(el => el.classList.add('visible'));
+    }
+
+    // -------------------------------------------------------------
+    // 12. NAV HEADER SCROLL EFFECT (shrink on scroll)
+    // -------------------------------------------------------------
+    const mainHeader = document.getElementById('main-header');
+    if (mainHeader) {
+        let lastScroll = 0;
+        const onScroll = () => {
+            const y = window.scrollY;
+            if (y > 50) {
+                mainHeader.classList.add('header-scrolled');
+            } else {
+                mainHeader.classList.remove('header-scrolled');
+            }
+            lastScroll = y;
+        };
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+    }
 });

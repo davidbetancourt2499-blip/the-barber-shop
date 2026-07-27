@@ -1,22 +1,81 @@
 /* Custom CSS Styles for THE BARBER SHOP Landing Page */
+/* Craft improvements based on Emil Kowalski's design engineering philosophy */
 
-/* Base & Typography Setup */
+/* Chicanos Font */
+@font-face {
+    font-family: 'Chicanos';
+    src: url('fonts/ChicanosPersonalUseRegular-qZDw5.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Rockabye Font */
+@font-face {
+    font-family: 'Rockabye';
+    src: url('fonts/rockabye/RockabyeRegular-K7Zqy.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Quicksilver Fast Font */
+@font-face {
+    font-family: 'QuicksilverFast';
+    src: url('fonts/quicksilver-fast/QuicksilverFastRegular-DO3oE.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* ─── Base & Typography Setup ─── */
 html {
     scroll-behavior: smooth;
-    color-scheme: light;
+    color-scheme: dark;
+}
+
+/* ─── Noise/Grain Overlay (break digital flatness) ─── */
+body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 180px 180px;
+}
+
+/* ─── Text Wrap Balance (prevent orphan words) ─── */
+h1, h2, h3, h4, p {
+    text-wrap: balance;
+}
+
+/* ─── Tabular Nums (aligned prices) ─── */
+.font-cinzel {
+    font-variant-numeric: tabular-nums;
+}
+
+/* ─── Custom Easing Curves (Emil Kowalski) ─── */
+:root {
+    --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+    --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+    --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+    --duration-fast: 160ms;
+    --duration-normal: 200ms;
+    --duration-slow: 300ms;
 }
 
 /* Font Color Scheme */
-.font-permanent {
-    color: #8B5CF6 !important;
-}
-
-.font-sedgwick {
-    color: #38BDF8 !important;
+.font-rockabye,
+.font-sedgwick,
+.font-quicksilver {
+    color: #fffffe !important;
 }
 
 body {
-    color: #1A1A1A !important;
+    color: #fffffe !important;
 }
 
 /* Custom Light Scrollbar */
@@ -25,81 +84,112 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-    background: #EDE4D3;
+    background: #0b0b0b;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #D6C9B4;
+    background: #3F3F46;
     border-radius: 5px;
-    border: 2px solid #EDE4D3;
+    border: 2px solid #0b0b0b;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #8B5CF6;
+    background: #d4af37;
 }
 
 /* Hero Background Radial Gradient Effect */
 .bg-radial-gradient {
-    background: radial-gradient(circle at center, rgba(139, 92, 246, 0.06) 0%, rgba(237, 228, 211, 0.9) 75%);
+    background: radial-gradient(circle at center, rgba(212, 175, 55, 0.06) 0%, rgba(9, 9, 11, 0.9) 75%);
 }
 
-/* Checkbox Card Styling & Active States */
-.service-checkbox-card {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+/* ─── Button Press Feedback (Emil Kowalski: scale(0.97) on :active) ─── */
+a, button, [role="button"] {
+    -webkit-tap-highlight-color: transparent;
 }
 
+.service-checkbox-card,
+.galeria-card,
+.service-card,
+.time-slot-btn,
+.time-preference-btn {
+    transition: transform var(--duration-fast) var(--ease-out),
+                box-shadow var(--duration-normal) var(--ease-out),
+                background-color var(--duration-normal) var(--ease-out),
+                border-color var(--duration-normal) var(--ease-out);
+}
+
+.service-checkbox-card:active,
+.barber-card:active,
+.galeria-card:active,
+.service-card:active {
+    transform: scale(0.97) !important;
+}
+
+/* ─── Checkbox Card Styling ─── */
 .service-checkbox-card:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(139, 92, 246, 0.12);
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.12);
 }
 
 .service-checkbox-card.checked {
-    background-color: rgba(255, 252, 245, 0.95);
-    border-color: #8B5CF6 !important;
-    box-shadow: 0 0 25px rgba(139, 92, 246, 0.2);
+    background-color: rgba(24, 24, 27, 0.95);
+    border-color: #d4af37 !important;
+    box-shadow: 0 0 25px rgba(212, 175, 55, 0.2);
 }
 
 .service-checkbox-card.checked .custom-check-icon {
-    background-color: #8B5CF6;
-    border-color: #8B5CF6;
+    background-color: #d4af37;
+    border-color: #d4af37;
 }
 
 .service-checkbox-card.checked .custom-check-icon i {
     display: block !important;
 }
 
-/* Barber Radio Cards Styling & Active States */
-.barber-card {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
+/* ─── Hover gated for pointer devices (Emil Kowalski) ─── */
+@media (hover: hover) and (pointer: fine) {
+    .service-checkbox-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(212, 175, 55, 0.12);
+    }
 
-.barber-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(139, 92, 246, 0.12);
-}
+    .galeria-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 12px 35px rgba(212, 175, 55, 0.15);
+    }
 
-.barber-card.checked {
-    background-color: rgba(255, 252, 245, 0.95);
-    border-color: #8B5CF6 !important;
-    box-shadow: 0 0 25px rgba(139, 92, 246, 0.2);
-}
+    .photo-stack:hover .stack-card:nth-child(1) {
+        transform: translate(-50%, -50%) rotate(-22deg) translateY(40px) translateX(-70px);
+    }
+    .photo-stack:hover .stack-card:nth-child(2) {
+        transform: translate(-50%, -50%) rotate(-11deg) translateY(20px) translateX(-35px);
+    }
+    .photo-stack:hover .stack-card:nth-child(3) {
+        transform: translate(-50%, -50%) rotate(11deg) translateY(20px) translateX(35px);
+    }
+    .photo-stack:hover .stack-card:nth-child(4) {
+        transform: translate(-50%, -50%) rotate(22deg) translateY(40px) translateX(70px);
+    }
+    .photo-stack:hover .stack-card:nth-child(5) {
+        transform: translate(-50%, -50%) rotate(0deg) translateY(-15px);
+    }
 
-.barber-card.checked .barber-check-icon {
-    background-color: #8B5CF6;
-    border-color: #8B5CF6;
-}
+    .photo-stack:hover .stack-label {
+        letter-spacing: 0.25em;
+    }
 
-.barber-card.checked .barber-check-icon i {
-    display: block !important;
+    .photo-stack:hover .stack-label i {
+        transform: translateX(4px);
+    }
 }
 
 /* Glowing Border Animations */
 @keyframes goldPulse {
     0%, 100% {
-        box-shadow: 0 0 15px rgba(139, 92, 246, 0.2);
+        box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
     }
     50% {
-        box-shadow: 0 0 30px rgba(139, 92, 246, 0.5);
+        box-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
     }
 }
 
@@ -109,40 +199,52 @@ body {
 
 /* Active Nav link underline indicator */
 .nav-link.active {
-    color: #8B5CF6 !important;
-    border-bottom-color: #8B5CF6 !important;
+    color: #d4af37 !important;
+    border-bottom-color: #d4af37 !important;
 }
 
 /* Time Slot Active State */
 .time-slot-btn.active {
-    background-color: #8B5CF6 !important;
-    color: #FFFFFF !important;
-    border-color: #8B5CF6 !important;
-    box-shadow: 0 0 15px rgba(139, 92, 246, 0.3);
+    background-color: #d4af37 !important;
+    color: #0b0b0b !important;
+    border-color: #d4af37 !important;
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
 }
 
 /* Time Preference Active State */
 .time-preference-btn.active {
-    background-color: #8B5CF6 !important;
-    color: #FFFFFF !important;
-    border-color: #8B5CF6 !important;
-    box-shadow: 0 0 15px rgba(139, 92, 246, 0.3);
+    background-color: #d4af37 !important;
+    color: #0b0b0b !important;
+    border-color: #d4af37 !important;
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
     font-weight: 700;
 }
 
-/* Modal Open Animation */
+/* ─── Modal Animation (scale from 0.95, not 0 — Emil Kowalski) ─── */
+#confirmation-modal {
+    transition: opacity var(--duration-normal) var(--ease-out);
+}
+
 #confirmation-modal.show {
     display: flex !important;
     opacity: 1;
 }
 
+#confirmation-modal > div {
+    transform: scale(0.95);
+    opacity: 0;
+    transition: transform var(--duration-slow) var(--ease-out),
+                opacity var(--duration-slow) var(--ease-out);
+}
+
 #confirmation-modal.show > div {
     transform: scale(1);
+    opacity: 1;
 }
 
 /* Gallery Zoom Effect */
 .gallery-item img {
-    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: transform var(--duration-slow) var(--ease-out);
 }
 
 /* Photo Stack Component */
@@ -163,10 +265,10 @@ body {
     overflow: hidden;
     border: 5px solid #fff;
     box-shadow: 0 8px 30px rgba(0,0,0,0.15);
-    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: transform 0.5s var(--ease-out);
     top: 50%;
     left: 50%;
-    background: #E4D8C4;
+    background: #18181B;
 }
 
 .photo-stack .stack-card img {
@@ -196,22 +298,6 @@ body {
     z-index: 5;
 }
 
-.photo-stack:hover .stack-card:nth-child(1) {
-    transform: translate(-50%, -50%) rotate(-22deg) translateY(40px) translateX(-70px);
-}
-.photo-stack:hover .stack-card:nth-child(2) {
-    transform: translate(-50%, -50%) rotate(-11deg) translateY(20px) translateX(-35px);
-}
-.photo-stack:hover .stack-card:nth-child(3) {
-    transform: translate(-50%, -50%) rotate(11deg) translateY(20px) translateX(35px);
-}
-.photo-stack:hover .stack-card:nth-child(4) {
-    transform: translate(-50%, -50%) rotate(22deg) translateY(40px) translateX(70px);
-}
-.photo-stack:hover .stack-card:nth-child(5) {
-    transform: translate(-50%, -50%) rotate(0deg) translateY(-15px);
-}
-
 .photo-stack .stack-label {
     position: absolute;
     bottom: -40px;
@@ -222,25 +308,17 @@ body {
     display: flex;
     align-items: center;
     gap: 8px;
-    color: #8B5CF6;
+    color: #fffffe;
     font-family: 'Sedgwick Ave', cursive;
     font-size: 1rem;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    transition: all 0.3s ease;
-}
-
-.photo-stack:hover .stack-label {
-    letter-spacing: 0.25em;
-    color: #7C3AED;
+    transition: letter-spacing var(--duration-normal) var(--ease-out);
 }
 
 .photo-stack .stack-label i {
     font-size: 1.1rem;
-    transition: transform 0.3s ease;
-}
-.photo-stack:hover .stack-label i {
-    transform: translateX(4px);
+    transition: transform var(--duration-normal) var(--ease-out);
 }
 
 @media (max-width: 640px) {
@@ -256,11 +334,198 @@ body {
 
 /* Galería page category cards */
 .galeria-card {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform var(--duration-fast) var(--ease-out),
+                box-shadow var(--duration-normal) var(--ease-out);
 }
-.galeria-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 12px 35px rgba(139, 92, 246, 0.15);
+
+/* ─── Hero Entrance Animation (one-time, 0.6s total) ─── */
+@keyframes heroFadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes heroFadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero-animate-logo {
+    opacity: 0;
+    animation: heroFadeInUp 0.6s var(--ease-out) 0.1s forwards;
+}
+
+.hero-animate-subtitle {
+    opacity: 0;
+    animation: heroFadeInDown 0.6s var(--ease-out) 0.35s forwards;
+}
+
+/* ─── Nav Header Scroll Effect (shrink on scroll) ─── */
+#main-header {
+    transition: padding var(--duration-normal) var(--ease-out),
+                background-color var(--duration-normal) var(--ease-out),
+                border-color var(--duration-normal) var(--ease-out);
+}
+
+#main-header.header-scrolled {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    background-color: rgba(11, 11, 11, 0.95);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+    backdrop-filter: blur(12px);
+}
+
+/* ─── Focus Rings (accessibility — keyboard only) ─── */
+:focus-visible {
+    outline: 2px solid #d4af37;
+    outline-offset: 2px;
+}
+
+/* ─── Skip-to-Content Link ─── */
+.skip-link {
+    position: absolute;
+    top: -100%;
+    left: 16px;
+    z-index: 10000;
+    padding: 8px 16px;
+    background: #d4af37;
+    color: #0b0b0b;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.875rem;
+    text-decoration: none;
+    transition: top var(--duration-fast) var(--ease-out);
+}
+
+.skip-link:focus {
+    top: 16px;
+}
+
+/* ─── Form Error Message ─── */
+.form-error-msg {
+    color: #ef4444;
+    font-size: 0.75rem;
+    margin-top: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+}
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s var(--ease-out),
+                transform 0.5s var(--ease-out);
+}
+
+.scroll-reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ─── Stagger Delay for Grid Children (Emil Kowalski: 30-80ms) ─── */
+.stagger-children > .scroll-reveal:nth-child(1) { transition-delay: 0ms; }
+.stagger-children > .scroll-reveal:nth-child(2) { transition-delay: 60ms; }
+.stagger-children > .scroll-reveal:nth-child(3) { transition-delay: 120ms; }
+.stagger-children > .scroll-reveal:nth-child(4) { transition-delay: 180ms; }
+.stagger-children > .scroll-reveal:nth-child(5) { transition-delay: 240ms; }
+.stagger-children > .scroll-reveal:nth-child(6) { transition-delay: 300ms; }
+
+/* Footer columns stagger — slightly longer delays for dramatic entry */
+.footer-stagger > .scroll-reveal:nth-child(1) { transition-delay: 0ms; }
+.footer-stagger > .scroll-reveal:nth-child(2) { transition-delay: 80ms; }
+.footer-stagger > .scroll-reveal:nth-child(3) { transition-delay: 160ms; }
+.footer-stagger > .scroll-reveal:nth-child(4) { transition-delay: 240ms; }
+
+/* ─── Gold Divider Animate Width ─── */
+.animate-divider {
+    transform-origin: left;
+    transform: scaleX(0);
+    transition: transform 0.6s var(--ease-out);
+}
+
+.animate-divider.visible {
+    transform: scaleX(1);
+}
+
+/* ─── Floating Badge Bob (sutil, 3s loop) ─── */
+@keyframes floatBob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+}
+
+.floating-badge {
+    animation: floatBob 3s ease-in-out infinite;
+}
+
+/* ─── Social Icons Hover (scale + rotate gated to pointer) ─── */
+@media (hover: hover) and (pointer: fine) {
+    .social-icon-instagram:hover {
+        transform: scale(1.1) rotate(-5deg);
+    }
+    .social-icon-facebook:hover {
+        transform: scale(1.1);
+    }
+    .social-icon-tiktok:hover {
+        transform: scale(1.1) rotate(5deg);
+    }
+}
+
+.social-icon-instagram,
+.social-icon-facebook,
+.social-icon-tiktok {
+    transition: transform var(--duration-fast) var(--ease-out),
+                background-color var(--duration-normal) var(--ease-out),
+                color var(--duration-normal) var(--ease-out);
+}
+
+/* ─── Barber Cards — Independent Stagger Animation ─── */
+#barber-selector-grid > .barber-card:nth-child(1) { transition-delay: 0ms; }
+#barber-selector-grid > .barber-card:nth-child(2) { transition-delay: 80ms; }
+#barber-selector-grid > .barber-card:nth-child(3) { transition-delay: 160ms; }
+
+/* ─── Barber Card Checked State — Premium Glow ─── */
+.barber-card.checked {
+    background: linear-gradient(135deg, rgba(24, 24, 27, 0.95), rgba(24, 24, 27, 0.8)) !important;
+    border-color: #d4af37 !important;
+    box-shadow: 0 0 30px rgba(212, 175, 55, 0.25), 0 0 60px rgba(212, 175, 55, 0.08) !important;
+}
+
+.barber-card.checked .barber-check-icon {
+    background-color: #d4af37;
+    border-color: #d4af37;
+    transform: scale(1.1);
+}
+
+.barber-card.checked .barber-check-icon i {
+    display: block !important;
+}
+
+/* ─── Section Transition Gradients (between dark sections) ─── */
+.section-transition {
+    position: relative;
+}
+
+.section-transition::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background: linear-gradient(to bottom, transparent, rgba(11, 11, 11, 0.4));
+    pointer-events: none;
+    z-index: 1;
 }
 
 /* Oregano — font-size compensation (~15% larger) */
@@ -291,4 +556,104 @@ body.font-oregano {
 .font-oregano.text-base {
     font-size: 1.125rem;
     line-height: 1.75rem;
+}
+
+/* ─── Apple Typography: tighten letter-spacing on large text ─── */
+.font-rockabye.text-3xl,
+.font-rockabye.text-4xl,
+.font-rockabye.text-5xl,
+.font-quicksilver.text-2xl {
+    letter-spacing: -0.01em;
+}
+
+/* SVG Logo Inline */
+.barber-logo-svg {
+    width: 100%;
+    height: auto;
+    max-width: 160px;
+    transition: filter var(--duration-normal) var(--ease-out);
+}
+
+.barber-logo-svg path,
+.barber-logo-svg g path {
+    fill: #d4af37 !important;
+    stroke: #d4af37 !important;
+    transition: fill var(--duration-normal) var(--ease-out),
+                stroke var(--duration-normal) var(--ease-out);
+}
+
+.header-logo:hover .barber-logo-svg path,
+.header-logo:hover .barber-logo-svg g path {
+    fill: #ffffff !important;
+    stroke: #ffffff !important;
+}
+
+/* Hero large logo */
+.hero-logo-svg {
+    width: 100%;
+    height: auto;
+    max-width: 700px;
+}
+
+.hero-logo-svg path,
+.hero-logo-svg g path {
+    fill: #d4af37 !important;
+    stroke: #d4af37 !important;
+    transition: fill var(--duration-normal) var(--ease-out),
+                stroke var(--duration-normal) var(--ease-out);
+}
+
+.hero-logo-svg:hover path,
+.hero-logo-svg:hover g path {
+    fill: #ffffff !important;
+    stroke: #ffffff !important;
+}
+
+@media (max-width: 640px) {
+    .barber-logo-svg { max-width: 120px; }
+    .hero-logo-svg { max-width: 350px; }
+}
+
+/* ─── Prefers Reduced Motion (Emil Kowalski + Apple Design) ─── */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    .scroll-reveal {
+        opacity: 1;
+        transform: none;
+    }
+
+    .hero-animate-logo,
+    .hero-animate-subtitle {
+        opacity: 1;
+        animation: none;
+    }
+
+    .animate-divider {
+        transform: scaleX(1);
+        transition: none;
+    }
+
+    .floating-badge {
+        animation: none;
+    }
+
+    .photo-stack .stack-card {
+        transition: none;
+    }
+
+    .gold-glow-pulse {
+        animation: none;
+    }
+
+    body::after {
+        display: none;
+    }
 }
