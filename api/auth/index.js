@@ -45,7 +45,7 @@ export default function handler(req, res) {
   if (req.method === 'OPTIONS') return res.status(200).end();
 
   if (req.method === 'POST') {
-    const { action } = req.query;
+    const { action } = req.query || {};
 
     // Accept action from query (?action=login), from path (/login, /verify)
     // or from the request body (admin.js sends { action } in body when provided).

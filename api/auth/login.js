@@ -3,6 +3,6 @@
  * POST /api/auth/login
  */
 
-import authHandler from '../index.js';
+import authHandler from './index.js';
 
 export default authHandler;
