@@ -3,9 +3,9 @@
  * PATCH /api/admin/bookings/[id]
  */
 
-import { updateBookingStatus, isPersistent } from '../../../_lib/storage.js';
-import { requireAdmin } from '../../../_lib/auth.js';
-import { BookingStatus } from '../../../../src/types/api.js';
+import { updateBookingStatus, isPersistent } from '../../_lib/storage.js';
+import { requireAdmin } from '../../_lib/auth.js';
+import { BookingStatus } from '../../../src/types/api.js';
 
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
