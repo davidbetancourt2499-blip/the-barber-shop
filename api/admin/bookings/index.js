@@ -1,12 +1,12 @@
 /**
  * THE BARBER SHOP — Admin bookings list
- * GET /api/admin/bookings
+ * GET /api/admin/bookings?date=&status=&barber=&limit=&offset=
  */
 
-import { bookings } from '../../bookings/index.js';
+import { listBookings as queryBookings, countBookings, isPersistent } from '../../_lib/storage.js';
 import { requireAdmin } from '../../_lib/auth.js';
 
-export default function handler(req, res) {
+export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
@@ -22,22 +22,22 @@ export default function handler(req, res) {
 
   const { date, status, barber, limit = '50', offset = '0' } = req.query;
 
-  let filtered = Array.from(bookings.values());
-
-  if (date) filtered = filtered.filter(b => b.date === date);
-  if (status) filtered = filtered.filter(b => b.status === status);
-  if (barber) filtered = filtered.filter(b => b.barber === barber);
-
-  filtered.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-
-  const start = parseInt(offset);
-  const end = start + parseInt(limit);
-  const paginated = filtered.slice(start, end);
+  const [paginated, total] = await Promise.all([
+    queryBookings({
+      date,
+      status,
+      barber,
+      limit: parseInt(limit),
+      offset: parseInt(offset)
+    }),
+    countBookings({ date, status, barber })
+  ]);
 
   return res.status(200).json({
     success: true,
+    persistent: isPersistent(),
     bookings: paginated,
-    total: filtered.length,
+    total,
     limit: parseInt(limit),
     offset: parseInt(offset)
   });

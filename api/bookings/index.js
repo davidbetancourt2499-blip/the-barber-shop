@@ -2,21 +2,17 @@
  * THE BARBER SHOP — Bookings API
  * POST /api/bookings - Create new booking
  * GET  /api/bookings - List bookings (admin)
- * GET  /api/bookings/[id] - Get single booking
- * PATCH /api/bookings/[id] - Update booking status (admin)
+ *
+ * Persistence: Supabase when configured, in-memory fallback otherwise.
  */
 
 import { validateBooking, generateFolio, buildWhatsAppMessage, calculateTotal, BookingStatus, getBarberPhone } from '../../src/types/api.js';
 import { requireAdmin } from '../_lib/auth.js';
-
-// In-memory storage (in production, use Vercel KV, Supabase, or similar)
-export const bookings = new Map();
-const bookingIndex = new Map(); // date -> Set of booking IDs
+import { createBooking as persistBooking, listBookings as queryBookings, countBookings, isPersistent } from '../_lib/storage.js';
 
 export default async function handler(req, res) {
-  // CORS headers
   res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, OPTIONS');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
   if (req.method === 'OPTIONS') {
@@ -41,20 +37,17 @@ export default async function handler(req, res) {
 async function createBooking(req, res) {
   const data = req.body;
 
-  // Validate
   const validation = validateBooking(data);
   if (!validation.valid) {
     return res.status(400).json({ error: 'Validation failed', details: validation.errors });
   }
 
-  // Generate folio (respect client-provided folio if present)
   const folio = (data.folio && /^TBS-\d{5}$/.test(data.folio)) ? data.folio : generateFolio();
 
   const isAny = (b) => b && String(b).includes('Sin preferencia');
   const time = isAny(data.barber) ? (data.time || null) : data.time;
   const preference = isAny(data.barber) ? (data.preference || null) : null;
 
-  // Build booking object
   const booking = {
     id: folio,
     folio,
@@ -74,18 +67,11 @@ async function createBooking(req, res) {
     updatedAt: new Date().toISOString()
   };
 
-  // Store
-  bookings.set(folio, booking);
+  await persistBooking(booking);
 
-  // Index by date
-  if (!bookingIndex.has(data.date)) {
-    bookingIndex.set(data.date, new Set());
-  }
-  bookingIndex.get(data.date).add(folio);
-
-  // Return success (without internal fields)
   return res.status(201).json({
     success: true,
+    persistent: isPersistent(),
     booking: {
       folio: booking.folio,
       name: booking.name,
@@ -107,29 +93,20 @@ async function listBookings(req, res) {
 
   const { date, status, barber, limit = '50', offset = '0' } = req.query;
 
-  let filtered = Array.from(bookings.values());
-
-  // Apply filters
-  if (date) {
-    filtered = filtered.filter(b => b.date === date);
-  }
-  if (status) {
-    filtered = filtered.filter(b => b.status === status);
-  }
-  if (barber) {
-    filtered = filtered.filter(b => b.barber === barber);
-  }
-
-  // Sort by createdAt desc
-  filtered.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-
-  // Pagination
-  const start = parseInt(offset);
-  const end = start + parseInt(limit);
-  const paginated = filtered.slice(start, end);
+  const [paginated, total] = await Promise.all([
+    queryBookings({
+      date,
+      status,
+      barber,
+      limit: parseInt(limit),
+      offset: parseInt(offset)
+    }),
+    countBookings({ date, status, barber })
+  ]);
 
   return res.status(200).json({
     success: true,
+    persistent: isPersistent(),
     bookings: paginated.map(b => ({
       folio: b.folio,
       name: b.name,
@@ -144,7 +121,7 @@ async function listBookings(req, res) {
       status: b.status,
       createdAt: b.createdAt
     })),
-    total: filtered.length,
+    total,
     limit: parseInt(limit),
     offset: parseInt(offset)
   });

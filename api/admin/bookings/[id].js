@@ -3,11 +3,11 @@
  * PATCH /api/admin/bookings/[id]
  */
 
-import { bookings } from '../../bookings/index.js';
-import { requireAdmin } from '../../_lib/auth.js';
-import { BookingStatus } from '../../../src/types/api.js';
+import { updateBookingStatus, isPersistent } from '../../../_lib/storage.js';
+import { requireAdmin } from '../../../_lib/auth.js';
+import { BookingStatus } from '../../../../src/types/api.js';
 
-export default function handler(req, res) {
+export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'PATCH, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
@@ -29,17 +29,14 @@ export default function handler(req, res) {
     return res.status(400).json({ error: `Estado inválido. Válidos: ${validStatuses.join(', ')}` });
   }
 
-  const booking = bookings.get(id);
+  const booking = await updateBookingStatus(id, status);
   if (!booking) {
     return res.status(404).json({ error: 'Reserva no encontrada' });
   }
 
-  booking.status = status;
-  booking.updatedAt = new Date().toISOString();
-  bookings.set(id, booking);
-
   return res.status(200).json({
     success: true,
+    persistent: isPersistent(),
     booking: {
       folio: booking.folio,
       status: booking.status,
