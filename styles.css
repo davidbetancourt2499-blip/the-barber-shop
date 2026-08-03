@@ -107,32 +107,6 @@
     to { transform: rotate(360deg); }
 }
 
-/* ─── Barber Pole Animation ─── */
-.barber-pole-left,
-.barber-pole-right {
-    background: repeating-linear-gradient(
-        -45deg,
-        #c0392b,
-        #c0392b 8px,
-        #fffffe 8px,
-        #fffffe 16px,
-        #2980b9 16px,
-        #2980b9 24px,
-        #fffffe 24px,
-        #fffffe 32px
-    );
-    background-size: 45px 45px;
-    animation: barber-pole-scroll 2s linear infinite;
-    opacity: 0.6;
-}
-.barber-pole-right {
-    animation-direction: reverse;
-}
-@keyframes barber-pole-scroll {
-    0% { background-position: 0 0; }
-    100% { background-position: 45px 45px; }
-}
-
 /* ─── Urban Corner Borders ─── */
 #hero .absolute[class*="border-"] {
     opacity: 0;
@@ -145,8 +119,6 @@
 /* ─── Reduced Motion ─── */
 @media (prefers-reduced-motion: reduce) {
     .hero-scissors,
-    .barber-pole-left,
-    .barber-pole-right,
     .float-tool-1,
     .float-tool-2,
     .float-tool-3,
