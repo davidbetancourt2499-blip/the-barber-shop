@@ -377,6 +377,37 @@ document.addEventListener('DOMContentLoaded', () => {
                 whatsappConfirmLink.href = `https://wa.me/${barberPhone}?text=${encodeURIComponent(waMessage)}`;
             }
 
+            // ---------------------------------------------------------
+            // 6B. POST RESERVA AL BACKEND (/api/bookings)
+            // No bloquea el flujo: si falla, la cita sigue por WhatsApp.
+            // ---------------------------------------------------------
+            (async () => {
+                try {
+                    const payload = {
+                        folio: randomFolio,
+                        name,
+                        phone,
+                        email: (document.getElementById('client-email') || {}).value?.trim?.() || '',
+                        date,
+                        time,
+                        preference,
+                        barber: barberName,
+                        services: selectedServices.map(s => s.name)
+                    };
+                    const res = await fetch('/api/bookings', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    if (!res.ok) {
+                        const body = await res.json().catch(() => ({}));
+                        console.warn('Booking API:', res.status, body.error || '');
+                    }
+                } catch (err) {
+                    console.warn('Booking API no disponible (modo offline/estático):', err.message || err);
+                }
+            })();
+
             if (modal) {
                 modal.classList.remove('hidden');
                 modal.classList.add('show');

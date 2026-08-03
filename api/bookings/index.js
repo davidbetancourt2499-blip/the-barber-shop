@@ -6,10 +6,11 @@
  * PATCH /api/bookings/[id] - Update booking status (admin)
  */
 
-import { validateBooking, generateFolio, buildWhatsAppMessage, BookingStatus, BarberPhones } from '../../src/types/api.js';
+import { validateBooking, generateFolio, buildWhatsAppMessage, calculateTotal, BookingStatus, getBarberPhone } from '../../src/types/api.js';
+import { requireAdmin } from '../_lib/auth.js';
 
 // In-memory storage (in production, use Vercel KV, Supabase, or similar)
-const bookings = new Map();
+export const bookings = new Map();
 const bookingIndex = new Map(); // date -> Set of booking IDs
 
 export default async function handler(req, res) {
@@ -46,8 +47,12 @@ async function createBooking(req, res) {
     return res.status(400).json({ error: 'Validation failed', details: validation.errors });
   }
 
-  // Generate folio
-  const folio = generateFolio();
+  // Generate folio (respect client-provided folio if present)
+  const folio = (data.folio && /^TBS-\d{5}$/.test(data.folio)) ? data.folio : generateFolio();
+
+  const isAny = (b) => b && String(b).includes('Sin preferencia');
+  const time = isAny(data.barber) ? (data.time || null) : data.time;
+  const preference = isAny(data.barber) ? (data.preference || null) : null;
 
   // Build booking object
   const booking = {
@@ -57,14 +62,14 @@ async function createBooking(req, res) {
     phone: data.phone.trim(),
     email: data.email.trim().toLowerCase(),
     date: data.date,
-    time: data.time || null,
-    preference: data.preference || null,
+    time,
+    preference,
     barber: data.barber,
     services: data.services,
     total: calculateTotal(data.services),
     status: BookingStatus.PENDING,
     whatsappMessage: buildWhatsAppMessage({ ...data, folio }),
-    whatsappPhone: BarberPhones[data.barber] || BarberPhones['Sin preferencia / Cualquiera disponible'],
+    whatsappPhone: getBarberPhone(data.barber),
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString()
   };
@@ -97,13 +102,8 @@ async function createBooking(req, res) {
 }
 
 async function listBookings(req, res) {
-  // Check for admin auth (simple token-based for now)
-  const authHeader = req.headers.authorization;
-  const adminToken = process.env.ADMIN_TOKEN || 'admin-secret-change-me';
-
-  if (!authHeader || authHeader !== `Bearer ${adminToken}`) {
-    return res.status(401).json({ error: 'Unauthorized' });
-  }
+  const auth = requireAdmin(req, res);
+  if (!auth) return;
 
   const { date, status, barber, limit = '50', offset = '0' } = req.query;
 
@@ -148,14 +148,4 @@ async function listBookings(req, res) {
     limit: parseInt(limit),
     offset: parseInt(offset)
   });
-}
-
-function calculateTotal(services) {
-  const prices = {
-    'Corte de Cabello General': 6,
-    'Perfilado / Afeitado de Barba': 2,
-    'Perfilado / Depilado de Cejas': 2,
-    'Pintado / Tinte': 20
-  };
-  return services.reduce((sum, s) => sum + (prices[s] || 0), 0);
 }

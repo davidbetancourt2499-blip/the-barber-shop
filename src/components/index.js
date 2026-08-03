@@ -382,7 +382,8 @@ export class Form extends BaseComponent {
     this.errors.clear();
     this.element.querySelectorAll('.input--error').forEach(el => el.classList.remove('input--error'));
     this.element.querySelectorAll('[data-form-error]').forEach(el => { el.textContent = ''; el.hidden = true; });
-    this.element.querySelector(Form.selectors.success)?.hidden = true;
+    const successEl = this.element.querySelector(Form.selectors.success);
+    if (successEl) successEl.hidden = true;
   }
 }
 

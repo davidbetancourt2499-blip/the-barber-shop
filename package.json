@@ -1,13 +1,17 @@
 {
   "name": "the-barber-shop-landing",
-  "version": "1.0.0",
-  "description": "Landing page de lujo y calculador interactivo para THE BARBER SHOP",
+  "version": "1.1.0",
+  "description": "Landing page de lujo y sistema de reservas para THE BARBER SHOP (frontend estático + API serverless)",
   "main": "index.html",
+  "type": "module",
   "scripts": {
     "dev": "npx -y serve . -p 3000",
-    "start": "npx -y serve . -p 3000"
+    "start": "npx -y serve . -p 3000",
+    "test": "node --test tests/*.test.js",
+    "test:watch": "node --test --watch tests/*.test.js",
+    "lint": "node --check src/types/api.js && node --check src/components/index.js && node --check src/components/booking-form.js"
   },
-  "keywords": ["barbershop", "landing-page", "tailwind", "calculator"],
+  "keywords": ["barbershop", "landing-page", "tailwind", "calculator", "reservas", "pwa"],
   "author": "Antigravity",
   "license": "ISC"
 }

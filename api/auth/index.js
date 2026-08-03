@@ -25,7 +25,7 @@ function generateToken() {
   return btoa(JSON.stringify(payload)) + '.' + btoa(JSON.stringify({ alg: 'HS256' }));
 }
 
-function verifyToken(token) {
+export function verifyToken(token) {
   try {
     if (!token) return null;
     const [payloadB64] = token.split('.');
@@ -47,8 +47,13 @@ export default function handler(req, res) {
   if (req.method === 'POST') {
     const { action } = req.query;
 
-    if (action === 'login') return handleLogin(req, res);
-    if (action === 'verify') return handleVerify(req, res);
+    // Accept action from query (?action=login), from path (/login, /verify)
+    // or from the request body (admin.js sends { action } in body when provided).
+    const pathAction = req.url?.split('?')[0].split('/').pop();
+    const effectiveAction = action || (req.body && req.body.action) || (pathAction !== 'auth' ? pathAction : null);
+
+    if (effectiveAction === 'login') return handleLogin(req, res);
+    if (effectiveAction === 'verify') return handleVerify(req, res);
 
     return res.status(400).json({ error: 'Invalid action' });
   }

@@ -1,11 +1,12 @@
 /**
  * THE BARBER SHOP — Admin API
- * GET /api/admin/stats - Dashboard statistics
- * GET /api/admin/bookings - List all bookings (with filters)
- * PATCH /api/admin/bookings/[id] - Update booking status
+ * GET /api/admin/stats       - Dashboard statistics
+ * GET /api/admin/bookings    - List all bookings (with filters)  [see ./bookings/index.js]
+ * PATCH /api/admin/bookings/[id] - Update booking status         [see ./bookings/[id].js]
  */
 
 import { bookings } from '../bookings/index.js';
+import { requireAdmin } from '../_lib/auth.js';
 
 export default function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -14,23 +15,13 @@ export default function handler(req, res) {
 
   if (req.method === 'OPTIONS') return res.status(200).end();
 
-  // Verify admin token
-  const authHeader = req.headers.authorization;
-  const adminToken = process.env.ADMIN_TOKEN || 'admin-secret-change-me';
-
-  if (!authHeader || authHeader !== `Bearer ${adminToken}`) {
-    return res.status(401).json({ error: 'Unauthorized' });
-  }
+  const auth = requireAdmin(req, res);
+  if (!auth) return;
 
   try {
     if (req.method === 'GET') {
-      const { stats } = req.query;
-      if (stats) return getStats(req, res);
+      if (req.query.stats) return getStats(req, res);
       return listBookings(req, res);
-    }
-
-    if (req.method === 'PATCH') {
-      return updateBooking(req, res);
     }
 
     return res.status(405).json({ error: 'Method not allowed' });
@@ -66,8 +57,8 @@ function getStats(req, res) {
       completed: all.filter(b => b.status === 'completed').length
     },
     byBarber: {
-      'Douglas': all.filter(b => b.barber === 'Douglas').length,
-      'Cristopher': all.filter(b => b.barber === 'Cristopher').length,
+      'Douglas': all.filter(b => b.barber === 'Douglas Tapia' || b.barber === 'Douglas').length,
+      'Cristopher': all.filter(b => b.barber === 'Cristopher Tapia' || b.barber === 'Cristopher').length,
       'Sin preferencia': all.filter(b => b.barber === 'Sin preferencia / Cualquiera disponible').length
     },
     revenue: {
@@ -105,25 +96,4 @@ function listBookings(req, res) {
     limit: parseInt(limit),
     offset: parseInt(offset)
   });
-}
-
-function updateBooking(req, res) {
-  const { id } = req.query;
-  const { status } = req.body;
-
-  const validStatuses = ['pending', 'confirmed', 'cancelled', 'completed'];
-  if (!validStatuses.includes(status)) {
-    return res.status(400).json({ error: 'Estado inválido' });
-  }
-
-  const booking = bookings.get(id);
-  if (!booking) {
-    return res.status(404).json({ error: 'Reserva no encontrada' });
-  }
-
-  booking.status = status;
-  booking.updatedAt = new Date().toISOString();
-  bookings.set(id, booking);
-
-  return res.status(200).json({ success: true, booking });
 }

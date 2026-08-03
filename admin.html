@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Admin | THE BARBER SHOP</title>
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="theme-color" content="#0b0b0b">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800;900&family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;600;700;800&family=Sedgwick+Ave&family=Oregano:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: { 400: '#f0c75e', 500: '#d4af37', 600: '#b8960e', 700: '#9a7d0c' },
+                        dark: { 900: '#0b0b0b', 800: '#18181B', 700: '#27272A', 600: '#3F3F46' }
+                    },
+                    fontFamily: {
+                        cinzel: ['Cinzel', 'serif'],
+                        sedgwick: ['Sedgwick Ave', 'cursive'],
+                        sans: ['Inter', 'sans-serif'],
+                        oregano: ['Oregano', 'cursive']
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="styles.css?v=18">
+    <link rel="stylesheet" href="src/styles/tokens.css">
+    <link rel="stylesheet" href="src/styles/components.css">
+</head>
+<body class="bg-dark-900 text-[#fffffe] font-oregano antialiased min-h-screen">
+
+    <!-- LOGIN VIEW -->
+    <div id="login-view" class="min-h-screen flex items-center justify-center p-4">
+        <div class="w-full max-w-md">
+            <div class="text-center mb-8">
+                <h1 class="font-quicksilver text-3xl tracking-wider text-gold-500">THE BARBER SHOP</h1>
+                <p class="font-cinzel text-xs uppercase tracking-[0.3em] text-[#fffffe]/60 mt-2">Panel de Administración</p>
+            </div>
+
+            <form id="login-form" class="bg-dark-800/70 border border-gold-500/30 rounded-2xl p-8 shadow-[0_0_40px_rgba(212,175,55,0.15)]" novalidate>
+                <div class="mb-5">
+                    <label for="login-username" class="block text-xs font-bold uppercase mb-2 text-[#fffffe]">Usuario</label>
+                    <input type="text" id="login-username" name="username" required autocomplete="username" placeholder="admin"
+                           class="w-full bg-dark-900/70 border border-dark-600 rounded-xl py-3 px-4 text-sm focus:outline-none focus:border-gold-500">
+                </div>
+                <div class="mb-6">
+                    <label for="login-password" class="block text-xs font-bold uppercase mb-2 text-[#fffffe]">Contraseña</label>
+                    <input type="password" id="login-password" name="password" required autocomplete="current-password" placeholder="••••••••"
+                           class="w-full bg-dark-900/70 border border-dark-600 rounded-xl py-3 px-4 text-sm focus:outline-none focus:border-gold-500">
+                </div>
+
+                <div id="login-error" class="hidden mb-4 p-3 rounded-xl bg-red-500/10 border border-red-500/40 text-red-300 text-xs" role="alert"></div>
+
+                <button type="submit" id="login-btn"
+                        class="w-full py-3 px-4 rounded-xl font-sedgwick font-bold uppercase tracking-wider text-[#fffffe] bg-gradient-to-r from-gold-400 via-gold-500 to-gold-600 text-black hover:opacity-90 duration-200 flex items-center justify-center">
+                    <span id="login-btn-text">Iniciar Sesión</span>
+                    <i class="fa-solid fa-circle-notch fa-spin hidden ml-2" id="login-btn-spinner"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- DASHBOARD VIEW -->
+    <div id="dashboard-view" class="hidden">
+
+        <!-- Header -->
+        <header class="sticky top-0 z-40 bg-dark-900/70 backdrop-blur-md border-b border-gold-500/20">
+            <div class="container mx-auto px-4 md:px-8 py-3.5 flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <i class="fa-solid fa-scissors text-gold-500 text-xl"></i>
+                    <span class="font-quicksilver text-lg tracking-wider">THE BARBER SHOP <span class="text-gold-500 text-xs font-cinzel">ADMIN</span></span>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <span id="admin-user-label" class="text-xs text-[#fffffe]/60 hidden sm:inline"></span>
+                    <button id="logout-btn" class="text-xs py-2 px-4 rounded-xl border border-dark-600 hover:border-gold-500/50 hover:text-gold-500 duration-200">
+                        <i class="fa-solid fa-right-from-bracket mr-1"></i> Salir
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <main class="container mx-auto px-4 md:px-8 py-8">
+
+            <!-- Stats Grid -->
+            <section class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+                <div class="bg-dark-800/70 border border-gold-500/20 rounded-2xl p-5">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs uppercase tracking-wider text-[#fffffe]/60">Total Citas</span>
+                        <i class="fa-solid fa-calendar-check text-gold-500"></i>
+                    </div>
+                    <p id="stat-total" class="font-cinzel text-3xl font-black mt-2">0</p>
+                </div>
+                <div class="bg-dark-800/70 border border-gold-500/20 rounded-2xl p-5">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs uppercase tracking-wider text-[#fffffe]/60">Hoy</span>
+                        <i class="fa-solid fa-sun text-gold-500"></i>
+                    </div>
+                    <p id="stat-today" class="font-cinzel text-3xl font-black mt-2">0</p>
+                </div>
+                <div class="bg-dark-800/70 border border-gold-500/20 rounded-2xl p-5">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs uppercase tracking-wider text-[#fffffe]/60">Este Mes</span>
+                        <i class="fa-solid fa-chart-line text-gold-500"></i>
+                    </div>
+                    <p id="stat-month" class="font-cinzel text-3xl font-black mt-2">0</p>
+                </div>
+                <div class="bg-dark-800/70 border border-gold-500/20 rounded-2xl p-5">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs uppercase tracking-wider text-[#fffffe]/60">Ingresos (Mes)</span>
+                        <i class="fa-solid fa-dollar-sign text-gold-500"></i>
+                    </div>
+                    <p id="stat-revenue" class="font-cinzel text-3xl font-black mt-2">$0</p>
+                </div>
+            </section>
+
+            <!-- Status Summary -->
+            <section class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
+                <div class="flex items-center gap-3 bg-dark-800/50 border border-dark-700 rounded-xl px-4 py-3">
+                    <span class="w-2.5 h-2.5 rounded-full bg-yellow-400"></span>
+                    <div><p id="stat-pending" class="font-bold text-sm">0</p><p class="text-[10px] text-[#fffffe]/50 uppercase">Pendientes</p></div>
+                </div>
+                <div class="flex items-center gap-3 bg-dark-800/50 border border-dark-700 rounded-xl px-4 py-3">
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+                    <div><p id="stat-confirmed" class="font-bold text-sm">0</p><p class="text-[10px] text-[#fffffe]/50 uppercase">Confirmadas</p></div>
+                </div>
+                <div class="flex items-center gap-3 bg-dark-800/50 border border-dark-700 rounded-xl px-4 py-3">
+                    <span class="w-2.5 h-2.5 rounded-full bg-sky-400"></span>
+                    <div><p id="stat-completed" class="font-bold text-sm">0</p><p class="text-[10px] text-[#fffffe]/50 uppercase">Completadas</p></div>
+                </div>
+                <div class="flex items-center gap-3 bg-dark-800/50 border border-dark-700 rounded-xl px-4 py-3">
+                    <span class="w-2.5 h-2.5 rounded-full bg-red-400"></span>
+                    <div><p id="stat-cancelled" class="font-bold text-sm">0</p><p class="text-[10px] text-[#fffffe]/50 uppercase">Canceladas</p></div>
+                </div>
+            </section>
+
+            <!-- Filters -->
+            <section class="flex flex-col sm:flex-row gap-3 mb-5">
+                <input type="date" id="filter-date" class="bg-dark-800/70 border border-dark-600 rounded-xl px-4 py-2.5 text-sm focus:border-gold-500">
+                <select id="filter-status" class="bg-dark-800/70 border border-dark-600 rounded-xl px-4 py-2.5 text-sm focus:border-gold-500">
+                    <option value="">Todos los estados</option>
+                    <option value="pending">Pendiente</option>
+                    <option value="confirmed">Confirmada</option>
+                    <option value="completed">Completada</option>
+                    <option value="cancelled">Cancelada</option>
+                </select>
+                <select id="filter-barber" class="bg-dark-800/70 border border-dark-600 rounded-xl px-4 py-2.5 text-sm focus:border-gold-500">
+                    <option value="">Todos los barberos</option>
+                    <option value="Douglas Tapia">Douglas</option>
+                    <option value="Cristopher Tapia">Cristopher</option>
+                    <option value="Sin preferencia / Cualquiera disponible">Sin preferencia</option>
+                </select>
+                <button id="filter-apply" class="px-5 py-2.5 rounded-xl bg-gold-500 text-black font-bold text-sm hover:bg-gold-400 duration-200">
+                    <i class="fa-solid fa-filter mr-1"></i> Aplicar
+                </button>
+            </section>
+
+            <!-- Bookings Table -->
+            <section class="bg-dark-800/50 border border-dark-700 rounded-2xl overflow-hidden">
+                <div class="px-5 py-4 border-b border-dark-700 flex items-center justify-between">
+                    <h2 class="font-cinzel font-bold">RESERVAS</h2>
+                    <span id="bookings-count" class="text-xs text-[#fffffe]/50"></span>
+                </div>
+
+                <div id="bookings-empty" class="hidden text-center py-14 text-[#fffffe]/50">
+                    <i class="fa-solid fa-inbox text-4xl mb-3 opacity-40"></i>
+                    <p class="text-sm">No hay reservas para los filtros seleccionados.</p>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm">
+                        <thead>
+                            <tr class="text-left text-[10px] uppercase tracking-wider text-[#fffffe]/50 border-b border-dark-700">
+                                <th class="px-5 py-3">Folio</th>
+                                <th class="px-5 py-3">Cliente</th>
+                                <th class="px-5 py-3">Barbero</th>
+                                <th class="px-5 py-3">Fecha</th>
+                                <th class="px-5 py-3">Hora</th>
+                                <th class="px-5 py-3">Servicios</th>
+                                <th class="px-5 py-3">Total</th>
+                                <th class="px-5 py-3">Estado</th>
+                                <th class="px-5 py-3">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="bookings-tbody"></tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Toast container -->
+    <div id="toast-container" class="fixed bottom-6 right-6 z-50 flex flex-col gap-3"></div>
+
+    <script src="src/admin.js"></script>
+</body>
+</html>

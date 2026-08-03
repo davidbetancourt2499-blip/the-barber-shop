@@ -29,6 +29,19 @@ export const BarberPhones = {
   [BarberType.ANY]: '525551234567'
 };
 
+/**
+ * Resolve a barber's WhatsApp phone from any display variant
+ * ("Douglas", "Douglas Tapia", "Cristopher Tapia", etc.).
+ */
+export function getBarberPhone(name) {
+  if (!name) return BarberPhones[BarberType.ANY];
+  const n = String(name).toLowerCase();
+  if (n.includes('sin preferencia') || n.includes('cualquiera')) return BarberPhones[BarberType.ANY];
+  if (n.includes('cristopher')) return BarberPhones[BarberType.CRISTOPHER];
+  if (n.includes('douglas')) return BarberPhones[BarberType.DOUGLAS];
+  return BarberPhones[BarberType.ANY];
+}
+
 export const TimePreference = {
   MORNING: 'Mañana',
   AFTERNOON: 'Tarde',
@@ -65,10 +78,15 @@ export const NightSlots = TimeSlots.filter(t => {
 });
 
 /**
- * Generate a unique booking folio
+ * Generate a unique booking folio (TBS-XXXXX).
+ * Uses a monotonic counter so consecutive folios never collide
+ * within the same process/session.
  */
+let _folioCounter = 0;
+
 export function generateFolio() {
-  return 'TBS-' + Math.floor(10000 + Math.random() * 90000);
+  _folioCounter = (_folioCounter + 1) % 100000;
+  return `TBS-${String(_folioCounter).padStart(5, '0')}`;
 }
 
 /**
@@ -114,9 +132,9 @@ export function calculateTotal(services) {
  * Build WhatsApp message
  */
 export function buildWhatsAppMessage(booking) {
-  const isAny = booking.barber === BarberType.ANY;
+  const isAny = booking.barber === BarberType.ANY || String(booking.barber).toLowerCase().includes('sin preferencia');
   const barberName = isAny ? 'THE BARBER SHOP' : booking.barber;
-  const barberPhone = BarberPhones[booking.barber] || BarberPhones[BarberType.ANY];
+  const barberPhone = getBarberPhone(booking.barber);
 
   const timeText = isAny
     ? (booking.preference ? `Por confirmar (preferencia: ${booking.preference})` : 'Por confirmar (según disponibilidad)')
