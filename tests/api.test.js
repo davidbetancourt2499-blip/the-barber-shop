@@ -46,15 +46,15 @@ test('calculateTotal suma precios', () => {
 // Barbers
 // ---------------------------------------------------------------------------
 test('teléfonos de barberos', () => {
-  assert.equal(BarberPhones[BarberType.DOUGLAS], '525551112233');
-  assert.equal(BarberPhones[BarberType.CRISTOPHER], '525554445566');
+  assert.equal(BarberPhones[BarberType.DOUGLAS], '593983267552');
+  assert.equal(BarberPhones[BarberType.CRISTOPHER], '593991794503');
   assert.equal(BarberPhones[BarberType.ANY], '525551234567');
 });
 
 test('getBarberPhone resuelve variantes de display', () => {
-  assert.equal(getBarberPhone('Douglas Tapia'), '525551112233');
-  assert.equal(getBarberPhone('Douglas'), '525551112233');
-  assert.equal(getBarberPhone('Cristopher Tapia'), '525554445566');
+  assert.equal(getBarberPhone('Douglas Tapia'), '593983267552');
+  assert.equal(getBarberPhone('Douglas'), '593983267552');
+  assert.equal(getBarberPhone('Cristopher Tapia'), '593991794503');
   assert.equal(getBarberPhone('Sin preferencia / Cualquiera disponible'), '525551234567');
   assert.equal(getBarberPhone(null), '525551234567');
 });

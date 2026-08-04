@@ -3,6 +3,58 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     // -------------------------------------------------------------
+    // 0. SMART PHONE FORMAT (nacional vs extranjero)
+    // -------------------------------------------------------------
+    const clientPhoneInput = document.getElementById('client-phone');
+
+    function detectAndApplyPhoneFormat() {
+        const typed = clientPhoneInput ? clientPhoneInput.value : '';
+        let national = true;
+        try {
+            const mod = { isEcuadorianNumber: (n) => /^09\d{8}$/.test(n.replace(/[\s\-().+]/g, '')) || /^5939\d{8}$/.test(n.replace(/[\s\-().+]/g, '')) };
+            if (typed && typed.trim().length > 0) {
+                national = mod.isEcuadorianNumber(typed);
+            } else {
+                const locales = (navigator.languages || [navigator.language || '']).map(l => l.toLowerCase());
+                national = locales.some(l => l === 'es-ec' || l.startsWith('es-ec'));
+            }
+        } catch (e) { national = true; }
+
+        // Placeholder del input según el visitante
+        if (clientPhoneInput) {
+            clientPhoneInput.placeholder = national
+                ? '098 326 7552…'
+                : '+593 98 326 7552…';
+        }
+
+        // Actualiza todo elemento [data-phone-display] con el número formateado
+        document.querySelectorAll('[data-phone-display]').forEach(el => {
+            const raw = el.getAttribute('data-phone-display');
+            if (!raw) return;
+            const digits = raw.replace(/[\s\-().+]/g, '');
+            if (/^09\d{8}$/.test(digits)) {
+                const local = national
+                    ? `${digits.slice(0, 3)} ${digits.slice(3, 6)} ${digits.slice(6)}`
+                    : `+593 ${digits.slice(1, 3)} ${digits.slice(3, 6)} ${digits.slice(6)}`;
+                el.textContent = local;
+            } else if (/^5939\d{8}$/.test(digits)) {
+                const nd = '0' + digits.slice(3);
+                const local = national
+                    ? `${nd.slice(0, 3)} ${nd.slice(3, 6)} ${nd.slice(6)}`
+                    : `+593 ${digits.slice(3, 5)} ${digits.slice(5, 8)} ${digits.slice(8)}`;
+                el.textContent = local;
+            } else {
+                el.textContent = raw;
+            }
+        });
+    }
+
+    detectAndApplyPhoneFormat();
+    if (clientPhoneInput) {
+        clientPhoneInput.addEventListener('input', detectAndApplyPhoneFormat);
+    }
+
+    // -------------------------------------------------------------
     // 1. SERVICE CALCULATOR
     // -------------------------------------------------------------
     const checkboxes = document.querySelectorAll('.service-checkbox');

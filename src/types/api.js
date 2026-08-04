@@ -24,8 +24,8 @@ export const BarberType = {
 };
 
 export const BarberPhones = {
-  [BarberType.DOUGLAS]: '525551112233',
-  [BarberType.CRISTOPHER]: '525554445566',
+  [BarberType.DOUGLAS]: '593983267552',
+  [BarberType.CRISTOPHER]: '593991794503',
   [BarberType.ANY]: '525551234567'
 };
 
